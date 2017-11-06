@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1611" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="TeaListTableCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="94"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="93"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CvA-ka-XT8">
+                        <rect key="frame" x="10" y="0.0" width="300" height="88"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_shopD" translatesAutoresizingMaskIntoConstraints="NO" id="Ae9-wu-xnw">
+                                <rect key="frame" x="10" y="9" width="70" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="70" id="VwM-tv-mXF"/>
+                                    <constraint firstAttribute="height" constant="70" id="nic-yT-PLu"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="E01231 古御风" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yCh-ip-cKU">
+                                <rect key="frame" x="90" y="9" width="99" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DH2-28-cG9">
+                                <rect key="frame" x="267" y="9" width="28" height="28"/>
+                                <state key="normal" image="icon_share"/>
+                                <connections>
+                                    <action selector="shareClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Vaj-WN-SRQ"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="古御风，产自千米深山，选用各种百年古树。古鱼粉产自云南省西双版纳傣族自治州南部" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1pE-fb-ilc">
+                                <rect key="frame" x="90" y="46" width="195" height="32"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CrG-k7-gBf">
+                                <rect key="frame" x="236" y="9" width="28" height="28"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="28" id="5Zu-T7-hkr"/>
+                                    <constraint firstAttribute="height" constant="28" id="fZT-Aq-ImZ"/>
+                                </constraints>
+                                <state key="normal" image="icon_fav_s"/>
+                                <state key="selected" image="icon_fav_m"/>
+                                <connections>
+                                    <action selector="favClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="hOf-0c-php"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="800" text="热门新茶" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h7z-I1-hQR">
+                                <rect key="frame" x="194" y="9" width="36" height="11"/>
+                                <color key="backgroundColor" red="0.95686274510000002" green="0.5450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="云南仓 生茶" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vmj-Zk-iVa">
+                                <rect key="frame" x="90" y="29" width="64" height="15"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="0.85882352939999995" green="0.69411764710000001" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Ae9-wu-xnw" firstAttribute="centerY" secondItem="CvA-ka-XT8" secondAttribute="centerY" id="02U-6H-xEy"/>
+                            <constraint firstItem="vmj-Zk-iVa" firstAttribute="leading" secondItem="1pE-fb-ilc" secondAttribute="leading" id="0ub-fn-dZU"/>
+                            <constraint firstItem="yCh-ip-cKU" firstAttribute="leading" secondItem="Ae9-wu-xnw" secondAttribute="trailing" constant="10" id="7Xm-FP-Yia"/>
+                            <constraint firstItem="CrG-k7-gBf" firstAttribute="top" secondItem="Ae9-wu-xnw" secondAttribute="top" id="Amx-4G-jFp"/>
+                            <constraint firstItem="h7z-I1-hQR" firstAttribute="top" secondItem="yCh-ip-cKU" secondAttribute="top" id="AwP-yD-uaa"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="1pE-fb-ilc" secondAttribute="trailing" constant="5" id="CNl-Gw-YuO"/>
+                            <constraint firstItem="yCh-ip-cKU" firstAttribute="top" secondItem="Ae9-wu-xnw" secondAttribute="top" id="E7q-Rk-aqm"/>
+                            <constraint firstItem="CrG-k7-gBf" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="h7z-I1-hQR" secondAttribute="trailing" constant="2" id="HCP-0G-rF2"/>
+                            <constraint firstItem="yCh-ip-cKU" firstAttribute="top" secondItem="Ae9-wu-xnw" secondAttribute="top" id="HNY-uH-okz"/>
+                            <constraint firstItem="DH2-28-cG9" firstAttribute="width" secondItem="CrG-k7-gBf" secondAttribute="width" id="HZ6-SF-xnD"/>
+                            <constraint firstItem="DH2-28-cG9" firstAttribute="top" secondItem="Ae9-wu-xnw" secondAttribute="top" id="K0e-mE-waO"/>
+                            <constraint firstItem="DH2-28-cG9" firstAttribute="height" secondItem="CrG-k7-gBf" secondAttribute="height" id="OxP-I0-NbN"/>
+                            <constraint firstItem="h7z-I1-hQR" firstAttribute="leading" secondItem="yCh-ip-cKU" secondAttribute="trailing" constant="5" id="Sgf-PD-nKd"/>
+                            <constraint firstItem="DH2-28-cG9" firstAttribute="leading" secondItem="CrG-k7-gBf" secondAttribute="trailing" constant="3" id="Vi8-2x-ZaG"/>
+                            <constraint firstItem="Ae9-wu-xnw" firstAttribute="leading" secondItem="CvA-ka-XT8" secondAttribute="leading" constant="10" id="fo9-Ho-Tgh"/>
+                            <constraint firstItem="1pE-fb-ilc" firstAttribute="top" secondItem="vmj-Zk-iVa" secondAttribute="bottom" constant="2" id="gWC-AN-Mci"/>
+                            <constraint firstItem="vmj-Zk-iVa" firstAttribute="top" secondItem="yCh-ip-cKU" secondAttribute="bottom" constant="2" id="pKe-jB-VFq"/>
+                            <constraint firstAttribute="trailing" secondItem="DH2-28-cG9" secondAttribute="trailing" constant="5" id="wN0-dq-ErV"/>
+                            <constraint firstItem="yCh-ip-cKU" firstAttribute="leading" secondItem="1pE-fb-ilc" secondAttribute="leading" id="xMc-J7-YUR"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="CvA-ka-XT8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="6sJ-nc-iAP"/>
+                    <constraint firstAttribute="trailing" secondItem="CvA-ka-XT8" secondAttribute="trailing" constant="10" id="85m-k2-pz2"/>
+                    <constraint firstItem="CvA-ka-XT8" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="T3s-EY-H4A"/>
+                    <constraint firstAttribute="bottom" secondItem="CvA-ka-XT8" secondAttribute="bottom" constant="5" id="zoL-Wm-yG2"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+            <connections>
+                <outlet property="favBtn" destination="CrG-k7-gBf" id="q4y-o1-OYv"/>
+                <outlet property="infoLab" destination="1pE-fb-ilc" id="iqb-Nw-DjK"/>
+                <outlet property="listLab" destination="vmj-Zk-iVa" id="rWX-kB-bcO"/>
+                <outlet property="shareBtn" destination="DH2-28-cG9" id="bpR-o2-aU9"/>
+                <outlet property="styleLab" destination="h7z-I1-hQR" id="s8X-bt-XdI"/>
+                <outlet property="teaImg" destination="Ae9-wu-xnw" id="A5V-b6-Hhy"/>
+                <outlet property="titleLab" destination="yCh-ip-cKU" id="1pT-to-MLN"/>
+            </connections>
+            <point key="canvasLocation" x="646" y="413.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="icon_fav_m" width="15" height="14"/>
+        <image name="icon_fav_s" width="15" height="14"/>
+        <image name="icon_share" width="16" height="16"/>
+        <image name="icon_shopD" width="70" height="70"/>
+    </resources>
+</document>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1611" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WareChooseNumVc">
+            <connections>
+                <outlet property="numFie" destination="jxe-Ka-TRM" id="8vU-Eu-E28"/>
+                <outlet property="sureBtn" destination="RYn-dG-7LG" id="6Bt-bM-Qtw"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UE1-kO-MSq">
+                    <rect key="frame" x="0.0" y="5" width="320" height="45"/>
+                    <subviews>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jxe-Ka-TRM">
+                            <rect key="frame" x="113" y="8" width="192" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="SPE-zK-QAI"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                        </textField>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="质押数量：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PE4-qd-IeH">
+                            <rect key="frame" x="33" y="14" width="75" height="18"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <color key="textColor" red="0.15686274510000001" green="0.15686274510000001" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="PE4-qd-IeH" firstAttribute="centerY" secondItem="UE1-kO-MSq" secondAttribute="centerY" id="2O3-gb-uPf"/>
+                        <constraint firstAttribute="height" constant="45" id="9v4-JI-Too"/>
+                        <constraint firstAttribute="trailing" secondItem="jxe-Ka-TRM" secondAttribute="trailing" constant="15" id="Usn-zs-Tvw"/>
+                        <constraint firstItem="jxe-Ka-TRM" firstAttribute="centerY" secondItem="UE1-kO-MSq" secondAttribute="centerY" id="f57-F2-1Xw"/>
+                        <constraint firstItem="jxe-Ka-TRM" firstAttribute="leading" secondItem="PE4-qd-IeH" secondAttribute="trailing" constant="5" id="kq9-uX-3vK"/>
+                        <constraint firstItem="PE4-qd-IeH" firstAttribute="leading" secondItem="UE1-kO-MSq" secondAttribute="leading" constant="33" id="qeH-72-EwR"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RYn-dG-7LG">
+                    <rect key="frame" x="33" y="98" width="254" height="35"/>
+                    <color key="backgroundColor" red="0.95686274510000002" green="0.5450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="5XK-7T-liF"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <state key="normal" title="确认"/>
+                    <connections>
+                        <action selector="sureClick:" destination="-1" eventType="touchUpInside" id="hgY-4L-g3c"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="RYn-dG-7LG" firstAttribute="top" secondItem="UE1-kO-MSq" secondAttribute="bottom" constant="48" id="W0s-uO-FTP"/>
+                <constraint firstAttribute="trailing" secondItem="RYn-dG-7LG" secondAttribute="trailing" constant="33" id="ZVL-GT-Xvq"/>
+                <constraint firstItem="RYn-dG-7LG" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="33" id="hMR-Lx-s4i"/>
+                <constraint firstAttribute="trailing" secondItem="UE1-kO-MSq" secondAttribute="trailing" id="ktm-gN-Wmw"/>
+                <constraint firstItem="UE1-kO-MSq" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="uW7-pI-Ln9"/>
+                <constraint firstItem="UE1-kO-MSq" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="5" id="x5U-3M-Qoi"/>
+            </constraints>
+            <point key="canvasLocation" x="352" y="266"/>
+        </view>
+    </objects>
+</document>

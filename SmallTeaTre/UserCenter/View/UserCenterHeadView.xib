@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1611" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="UserCenterHeadView">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="227"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_back_cen" translatesAutoresizingMaskIntoConstraints="NO" id="oHK-jS-bds">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="227"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="个人中心" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6n3-bs-wee">
+                    <rect key="frame" x="130" y="35" width="60" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_toux" translatesAutoresizingMaskIntoConstraints="NO" id="1NF-Fh-aRW">
+                    <rect key="frame" x="115" y="73" width="90" height="90"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="90" id="o48-Fg-zw8"/>
+                        <constraint firstAttribute="height" constant="90" id="teh-HJ-1eh"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="中吉号小茶宝" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ndo-B3-Gn3">
+                    <rect key="frame" x="115" y="183" width="90" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="6n3-bs-wee" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="35" id="CpY-xt-wzw"/>
+                <constraint firstItem="6n3-bs-wee" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Ldq-hb-ETr"/>
+                <constraint firstItem="ndo-B3-Gn3" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Rdd-VQ-US3"/>
+                <constraint firstAttribute="bottom" secondItem="oHK-jS-bds" secondAttribute="bottom" id="aZ0-7c-xHH"/>
+                <constraint firstItem="oHK-jS-bds" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="ao6-5m-yCT"/>
+                <constraint firstItem="ndo-B3-Gn3" firstAttribute="top" secondItem="1NF-Fh-aRW" secondAttribute="bottom" constant="20" id="dVr-9L-dCI"/>
+                <constraint firstItem="1NF-Fh-aRW" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="h4f-hg-kEo"/>
+                <constraint firstAttribute="trailing" secondItem="oHK-jS-bds" secondAttribute="trailing" id="hBC-Rs-TzZ"/>
+                <constraint firstItem="1NF-Fh-aRW" firstAttribute="top" secondItem="6n3-bs-wee" secondAttribute="bottom" constant="20" id="nUA-xj-nVZ"/>
+                <constraint firstItem="oHK-jS-bds" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="x1R-9J-nED"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="headView" destination="1NF-Fh-aRW" id="fo9-N4-GhY"/>
+                <outlet property="nickname" destination="ndo-B3-Gn3" id="bYV-s8-ipb"/>
+            </connections>
+            <point key="canvasLocation" x="533" y="333.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icon_back_cen" width="375" height="266"/>
+        <image name="icon_toux" width="91" height="91"/>
+    </resources>
+</document>

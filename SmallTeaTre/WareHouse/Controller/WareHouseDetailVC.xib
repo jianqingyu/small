@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WareHouseDetailVC">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outletCollection property="btns" destination="kbl-Xr-YRn" id="qXZ-c7-o4b"/>
+                <outletCollection property="btns" destination="Zha-2h-c4F" id="g9d-oq-k6N"/>
+                <outletCollection property="btns" destination="HeX-hy-3D6" id="iqN-dS-ESK"/>
+                <outletCollection property="btns" destination="iOT-rT-cm8" id="lDT-A4-1W3"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kbl-Xr-YRn">
+                    <rect key="frame" x="0.0" y="524" width="79" height="44"/>
+                    <color key="backgroundColor" red="0.95686274510000002" green="0.5450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="vek-yL-F0c"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <state key="normal" title="现提"/>
+                    <connections>
+                        <action selector="bottomClick:" destination="-1" eventType="touchUpInside" id="khY-rT-cRD"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zha-2h-c4F">
+                    <rect key="frame" x="80" y="524" width="80" height="44"/>
+                    <color key="backgroundColor" red="0.95686274510000002" green="0.5450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <state key="normal" title="暂存"/>
+                    <connections>
+                        <action selector="bottomClick:" destination="-1" eventType="touchUpInside" id="arV-q8-IX1"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HeX-hy-3D6">
+                    <rect key="frame" x="161" y="524" width="79" height="44"/>
+                    <color key="backgroundColor" red="0.95686274510000002" green="0.5450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <state key="normal" title="转让"/>
+                    <connections>
+                        <action selector="bottomClick:" destination="-1" eventType="touchUpInside" id="fxz-hq-wEz"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iOT-rT-cm8">
+                    <rect key="frame" x="241" y="524" width="79" height="44"/>
+                    <color key="backgroundColor" red="0.95686274510000002" green="0.5450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <state key="normal" title="质押"/>
+                    <connections>
+                        <action selector="bottomClick:" destination="-1" eventType="touchUpInside" id="4cc-nl-3AI"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="HeX-hy-3D6" firstAttribute="height" secondItem="kbl-Xr-YRn" secondAttribute="height" id="Alk-vc-Dwj"/>
+                <constraint firstItem="iOT-rT-cm8" firstAttribute="leading" secondItem="HeX-hy-3D6" secondAttribute="trailing" constant="1" id="GE2-qH-hff"/>
+                <constraint firstItem="iOT-rT-cm8" firstAttribute="width" secondItem="kbl-Xr-YRn" secondAttribute="width" id="Jgf-Hl-eda"/>
+                <constraint firstItem="Zha-2h-c4F" firstAttribute="width" secondItem="kbl-Xr-YRn" secondAttribute="width" id="K6g-NL-DNH"/>
+                <constraint firstItem="kbl-Xr-YRn" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="PaU-34-RF8"/>
+                <constraint firstItem="Zha-2h-c4F" firstAttribute="leading" secondItem="kbl-Xr-YRn" secondAttribute="trailing" constant="1" id="RYE-81-gpT"/>
+                <constraint firstAttribute="bottom" secondItem="Zha-2h-c4F" secondAttribute="bottom" id="VId-i9-K7Y"/>
+                <constraint firstAttribute="bottom" secondItem="iOT-rT-cm8" secondAttribute="bottom" id="VXt-yC-WVj"/>
+                <constraint firstItem="HeX-hy-3D6" firstAttribute="leading" secondItem="Zha-2h-c4F" secondAttribute="trailing" constant="1" id="XM1-px-erq"/>
+                <constraint firstItem="HeX-hy-3D6" firstAttribute="width" secondItem="kbl-Xr-YRn" secondAttribute="width" id="Xxz-fm-3rF"/>
+                <constraint firstAttribute="trailing" secondItem="iOT-rT-cm8" secondAttribute="trailing" id="Yc5-xP-0Ve"/>
+                <constraint firstAttribute="bottom" secondItem="HeX-hy-3D6" secondAttribute="bottom" id="cN3-vy-SRi"/>
+                <constraint firstItem="Zha-2h-c4F" firstAttribute="height" secondItem="kbl-Xr-YRn" secondAttribute="height" id="gez-FJ-5E7"/>
+                <constraint firstItem="iOT-rT-cm8" firstAttribute="height" secondItem="kbl-Xr-YRn" secondAttribute="height" id="hci-Iw-BCL"/>
+                <constraint firstAttribute="bottom" secondItem="kbl-Xr-YRn" secondAttribute="bottom" id="nhh-MV-Zo1"/>
+            </constraints>
+            <point key="canvasLocation" x="295" y="349"/>
+        </view>
+    </objects>
+</document>
