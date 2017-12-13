@@ -7,7 +7,8 @@
 //
 
 #import "BaseViewController.h"
-
-@interface ChooseStoreInfoVC : UIViewController
+typedef void (^ChooseSInfoBack)(BOOL isYes);
+@interface ChooseStoreInfoVC : BaseViewController
 @property (nonatomic,strong)NSMutableDictionary *mutDic;
+@property (nonatomic,  copy)ChooseSInfoBack back;
 @end

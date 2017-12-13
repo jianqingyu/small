@@ -18,12 +18,13 @@
 @property (nonatomic, copy)NSString *imgUrl;
 @property (nonatomic, copy)NSString *unit;
 @property (nonatomic, copy)NSString *unitName;
-@property (nonatomic,assign)int transStatus;
 @property (nonatomic, copy)NSString *transStatusName;
 @property (nonatomic, copy)NSString *createTime;
 @property (nonatomic, copy)NSString *updateTime;
 @property (nonatomic, copy)NSString *endTime;
 @property (nonatomic, copy)NSString *quantity;
+@property (nonatomic, copy)NSString *expectation;
+@property (nonatomic,assign)int transStatus;
 @property (nonatomic,assign)float price;
 @property (nonatomic,assign)float total;
 @property (nonatomic,assign)float assessment;

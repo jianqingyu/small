@@ -18,6 +18,7 @@
 @property (nonatomic, copy)NSString *imgUrl;
 @property (nonatomic, copy)NSString *unit;
 @property (nonatomic, copy)NSString *createTime;
+@property (nonatomic, copy)NSString *standard;
 @property (nonatomic, copy)NSString *orderStatusName;
 @property (nonatomic,assign)float price;
 @property (nonatomic, copy)NSString *deportName;

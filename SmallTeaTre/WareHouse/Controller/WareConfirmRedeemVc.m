@@ -41,7 +41,15 @@
 }
 
 - (void)setBaseWareView{
-    int staue = _info.transStatus;
+    int staue = 0;
+    //质押 审核通过1 -- 交易成功3
+    if ([_info.transType isEqualToString:@"0004"]) {
+        staue = _info.transStatus;
+    }
+    //赎回 审核通过1
+    if ([_info.transType isEqualToString:@"0002"]&&_info.transStatus==1) {
+        staue = 6;
+    }
     UIButton *btn = self.btns[0];
     UIButton *btn2 = self.btns[1];
     switch (staue) {
@@ -86,15 +94,14 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"id"] = _info.id;
     NSString *netUrl = [NSString stringWithFormat:@"%@%@",baseNet,url];
-    if (_info.transStatus==3) {
-        [BaseApi postJsonData:^(BaseResponse *response, NSError *error) {
-            [self changeBackWith:response];
-        } requestURL:netUrl params:params];
-    }else{
-        [BaseApi postGeneralData:^(BaseResponse *response, NSError *error) {
-            [self changeBackWith:response];
-        } requestURL:netUrl params:params];
-    }
+//    if (_info.transStatus==3) {
+//        [BaseApi postJsonData:^(BaseResponse *response, NSError *error) {
+//            [self changeBackWith:response];
+//        } requestURL:netUrl params:params];
+//    }else{
+    [BaseApi postGeneralData:^(BaseResponse *response, NSError *error) {
+        [self changeBackWith:response];
+    } requestURL:netUrl params:params];
 }
 
 - (void)changeBackWith:(BaseResponse *)response{

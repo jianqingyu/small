@@ -11,7 +11,7 @@ target 'SmallTeaTre' do
      pod 'MJRefresh', '~> 2.3.2'
      pod 'MWPhotoBrowser', '~> 2.1.1'
      pod 'Masonry', '~> 0.6.2'
-     pod 'ShareSDK3'
+     pod 'ShareSDK3','~> 4.0.2'
      pod 'MOBFoundation'
      pod 'ShareSDK3/ShareSDKPlatforms/QQ'
      pod 'ShareSDK3/ShareSDKPlatforms/SinaWeibo'

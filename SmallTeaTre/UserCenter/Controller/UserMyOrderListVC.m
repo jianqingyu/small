@@ -43,6 +43,12 @@
         make.right.equalTo(self.view).offset(0);
         make.bottom.equalTo(self.view).offset(0);
     }];
+    // 11.0以上才有这个属性
+    if (@available(iOS 11.0, *)){
+        self.mTableView.estimatedRowHeight = 0;
+        self.mTableView.estimatedSectionHeaderHeight = 0;
+        self.mTableView.estimatedSectionFooterHeight = 0;
+    }
     self.mTableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectZero];
 }
 

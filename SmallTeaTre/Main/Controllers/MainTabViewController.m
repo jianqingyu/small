@@ -28,7 +28,7 @@
             selectImage:@"icon_home_s"];
     
     ShoppingMallVC *shopVc = [[ShoppingMallVC alloc]init];
-    [self addChildVcWithVC:shopVc Title:@"商城"imageName:@"icon_shop"
+    [self addChildVcWithVC:shopVc Title:@"茶柜"imageName:@"icon_shop"
                selectImage:@"icon_shop_s"];
     
     WareHouseVC *houseVc = [[WareHouseVC alloc]init];

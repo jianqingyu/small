@@ -12,6 +12,7 @@
 #import "RigisterUserInfoVc.h"
 #import "IQKeyboardManager.h"
 #import "ChooseAddInfoView.h"
+#import "ShowLoginViewTool.h"
 @interface ChooseStoreInfoVC ()
 @property (weak,  nonatomic) IBOutlet UIButton *nextBtn;
 @property (weak,  nonatomic) UIView *baView;
@@ -28,6 +29,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    if (!self.mutDic) {
+        self.mutDic = @{}.mutableCopy;
+    }
     [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
     [self.nextBtn setLayerWithW:4 andColor:BordColor andBackW:0.0001];
     self.height = 270;
@@ -155,11 +159,27 @@
         [MBProgressHUD showError:@"请选择门店"];
         return;
     }
-    RigisterUserInfoVc *infoVc = [RigisterUserInfoVc new];
-    infoVc.dic = self.mutDic.copy;
-    infoVc.isFir = YES;
-    MainNavViewController *naviVC = [[MainNavViewController alloc]initWithRootViewController:infoVc];
-    [self presentViewController:naviVC animated:YES completion:nil];
+    SaveUserInfoTool *save = [SaveUserInfoTool shared];
+    NSMutableDictionary *params = @{}.mutableCopy;
+    params[@"userId"] = save.id;
+    params[@"shopId"] = self.mutDic[@"shopId"];
+    save.shopId = self.mutDic[@"shopId"];
+    NSString *netUrl = [NSString stringWithFormat:@"%@api/user/shop/bind",baseNet];
+    [BaseApi postGeneralData:^(BaseResponse *response, NSError *error) {
+        if ([response.code isEqualToString:@"0000"]) {
+            if (self.back) {
+                self.back(YES);
+            }
+            return;
+        }
+        NSString *str = [YQObjectBool boolForObject:response.msg]?response.msg:@"操作失败";
+        [MBProgressHUD showError:str];
+    } requestURL:netUrl params:params];
+//    RigisterUserInfoVc *infoVc = [RigisterUserInfoVc new];
+//    infoVc.dic = self.mutDic.copy;
+//    infoVc.isFir = YES;
+//    MainNavViewController *naviVC = [[MainNavViewController alloc]initWithRootViewController:infoVc];
+//    [self presentViewController:naviVC animated:YES completion:nil];
 }
 
 @end

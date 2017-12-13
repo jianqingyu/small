@@ -10,6 +10,7 @@
 #import "ShoppingListInfo.h"
 #import "HomeShoppingDetailVc.h"
 #import "ShopShareCustomView.h"
+#import "CustomTitleView.h"
 #import "ShoppingListTableCell.h"
 @interface ShoppingSearchVC ()<UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate>{
     int curPage;
@@ -35,6 +36,11 @@
     self.height = 190;
     [self creatBaseView];
     [self setupHeaderRefresh];
+    if (@available(iOS 11.0, *)) {
+        
+    } else {
+        
+    }
 }
 
 - (void)creatNaviBaseView{
@@ -47,12 +53,18 @@
     [bar addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:bar];
     
-    UIView *titleView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SDevWidth-80, 30)];
-    titleView.backgroundColor = [UIColor clearColor];
-    UISearchBar *seaBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, SDevWidth-80, 30)];
+    CustomTitleView *titleView = [[CustomTitleView alloc]init];
+    titleView.frame = CGRectMake(0, 0, SDevWidth*0.65, 30);
+    titleView.backgroundColor = [UIColor whiteColor];
+    [titleView setLayerWithW:3 andColor:BordColor andBackW:0.0001];
+    UISearchBar *seaBar = [[UISearchBar alloc] initWithFrame:titleView.bounds];
     [titleView addSubview:seaBar];
+    titleView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    
     [seaBar setPlaceholder:@"搜索茶叶信息"];
-    [seaBar becomeFirstResponder];
+    if (!self.isCh) {
+        [seaBar becomeFirstResponder];
+    }
     for (id view in seaBar.subviews) {
         if ([view isKindOfClass:[UIView class]]) {
             for (id laV in [view subviews]){
@@ -155,6 +167,12 @@
         make.right.equalTo(self.view).offset(0);
         make.bottom.equalTo(self.view).offset(0);
     }];
+    // 11.0以上才有这个属性
+    if (@available(iOS 11.0, *)){
+        self.tableView.estimatedRowHeight = 0;
+        self.tableView.estimatedSectionHeaderHeight = 0;
+        self.tableView.estimatedSectionFooterHeight = 0;
+    }
     self.tableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectZero];
 }
 
@@ -199,7 +217,7 @@
 }
 
 - (void)getCommodityData{
-    if (_searchBar.text.length==0) {
+    if (_searchBar.text.length==0&&!self.isCh) {
         [_tableView.header endRefreshing];
         return;
     }
@@ -301,6 +319,13 @@
     ShoppingListInfo *listInfo;
     if (indexPath.section<self.dataArray.count) {
         listInfo = self.dataArray[indexPath.section];
+    }
+    if (self.isCh) {
+        if (self.back) {
+            self.back(listInfo);
+        }
+        [self.navigationController popViewControllerAnimated:YES];
+        return;
     }
     HomeShoppingDetailVc *detail = [HomeShoppingDetailVc new];
     detail.title = listInfo.goodsName;

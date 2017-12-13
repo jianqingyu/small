@@ -7,11 +7,12 @@
 //
 
 #import "WareChooseNumVc.h"
-
+#import "CustomProtrlView.h"
 @interface WareChooseNumVc ()
 @property (weak, nonatomic) IBOutlet UITextField *numFie;
 @property (weak, nonatomic) IBOutlet UIButton *sureBtn;
 @property (nonatomic, copy) NSDictionary *dic;
+@property (weak,  nonatomic) CustomProtrlView *proView;
 @end
 
 @implementation WareChooseNumVc
@@ -26,25 +27,48 @@
             [self.navigationController popViewControllerAnimated:YES];
         }];
     }
+    [self loadMainProView];
+}
+
+#pragma mark -- 弹出协议
+- (void)loadMainProView{
+    CustomProtrlView *pView = [CustomProtrlView creatCustomView];
+    [self.view addSubview:pView];
+    [pView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.view).offset(0);
+        make.left.equalTo(self.view).offset(0);
+        make.right.equalTo(self.view).offset(0);
+        make.bottom.equalTo(self.view).offset(0);
+    }];
+    pView.back = ^(BOOL isYes){
+        self.proView.hidden = YES;
+        [self applyStoreZy];
+    };
+    pView.hidden = YES;
+    self.proView = pView;
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    self.proView.hidden = YES;
 }
 
 - (IBAction)sureClick:(id)sender {
-    [self applyStoreZy];
-}
-
-- (void)applyStoreZy{
     int number = [self.numFie.text intValue];
     if (number<1||number>[_info.quantity intValue]) {
         [MBProgressHUD showError:@"请填写正确质押数量"];
         return;
     }
     [self.numFie resignFirstResponder];
+    self.proView.hidden = NO;
+}
+//申请质押
+- (void)applyStoreZy{
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"goodsId"] = _info.goodsId;
+//    params[@"goodsId"] = _info.goodsId;
     params[@"quantity"] = self.numFie.text;
     params[@"id"] = _info.id;
     NSString *netUrl = [NSString stringWithFormat:@"%@api/store/zy/apply",baseNet];
-    [BaseApi postJsonData:^(BaseResponse *response, NSError *error) {
+    [BaseApi postGeneralData:^(BaseResponse *response, NSError *error) {
         if ([response.code isEqualToString:@"0000"]) {
             if (self.back) {
                 self.back(YES);

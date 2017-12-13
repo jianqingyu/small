@@ -1,8 +1,12 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1611" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController">
@@ -22,7 +26,7 @@
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uOg-bm-yTE">
                             <rect key="frame" x="160" y="109" width="1" height="16"/>
-                            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" red="0.3333333432674408" green="0.3333333432674408" blue="0.3333333432674408" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="1" id="5ak-lR-afM"/>
                                 <constraint firstAttribute="height" constant="16" id="WV8-iS-VIh"/>
@@ -35,10 +39,10 @@
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <state key="normal" title="登录">
-                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <state key="disabled">
-                                <color key="titleColor" red="0.95686274509803915" green="0.54509803921568623" blue="0.14509803921568626" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleColor" red="0.95686274509803915" green="0.54509803921568623" blue="0.14509803921568626" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <connections>
                                 <action selector="loginClick:" destination="-1" eventType="touchUpInside" id="wZa-o1-deO"/>
@@ -48,23 +52,23 @@
                             <rect key="frame" x="176" y="102" width="60" height="30"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <state key="normal" title="注册">
-                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <state key="disabled">
-                                <color key="titleColor" red="0.95686274509803915" green="0.54509803921568623" blue="0.14509803921568626" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleColor" red="0.95686274509803915" green="0.54509803921568623" blue="0.14509803921568626" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <connections>
                                 <action selector="regisClick:" destination="-1" eventType="touchUpInside" id="KqZ-lp-02S"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F8s-rf-g6z">
-                            <rect key="frame" x="24" y="35" width="60" height="30"/>
+                            <rect key="frame" x="24" y="35" width="62" height="30"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <state key="normal" title="暂不登录">
-                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <state key="disabled">
-                                <color key="titleColor" red="0.91372549020000005" green="0.47450980390000003" blue="0.035294117649999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleColor" red="0.91372549020000005" green="0.47450980390000003" blue="0.035294117649999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <connections>
                                 <action selector="cancelClick:" destination="-1" eventType="touchUpInside" id="kTA-MU-MAi"/>
@@ -72,7 +76,7 @@
                             </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstItem="ArL-9F-mJz" firstAttribute="height" secondItem="kLi-SK-xTU" secondAttribute="height" id="9Yy-eW-yLI"/>
                         <constraint firstAttribute="height" constant="165" id="Bif-P8-r6B"/>
@@ -93,7 +97,7 @@
                 <constraint firstItem="Bcn-tj-UU3" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Dg2-6F-ubB"/>
                 <constraint firstAttribute="trailing" secondItem="Bcn-tj-UU3" secondAttribute="trailing" id="xCn-OX-9c5"/>
             </constraints>
-            <point key="canvasLocation" x="394" y="310"/>
+            <point key="canvasLocation" x="-4" y="120"/>
         </view>
     </objects>
 </document>

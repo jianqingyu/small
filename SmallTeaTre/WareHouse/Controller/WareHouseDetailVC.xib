@@ -1,8 +1,12 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WareHouseDetailVC">
@@ -20,8 +24,8 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kbl-Xr-YRn">
-                    <rect key="frame" x="0.0" y="524" width="79" height="44"/>
-                    <color key="backgroundColor" red="0.95686274510000002" green="0.5450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                    <rect key="frame" x="0.0" y="524" width="79.5" height="44"/>
+                    <color key="backgroundColor" red="0.95686274510000002" green="0.5450980392" blue="0.1450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="vek-yL-F0c"/>
                     </constraints>
@@ -32,17 +36,17 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zha-2h-c4F">
-                    <rect key="frame" x="80" y="524" width="80" height="44"/>
-                    <color key="backgroundColor" red="0.95686274510000002" green="0.5450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                    <rect key="frame" x="80.5" y="524" width="79" height="44"/>
+                    <color key="backgroundColor" red="0.95686274510000002" green="0.5450980392" blue="0.1450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <state key="normal" title="暂存"/>
+                    <state key="normal" title="续存"/>
                     <connections>
                         <action selector="bottomClick:" destination="-1" eventType="touchUpInside" id="arV-q8-IX1"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HeX-hy-3D6">
-                    <rect key="frame" x="161" y="524" width="79" height="44"/>
-                    <color key="backgroundColor" red="0.95686274510000002" green="0.5450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                    <rect key="frame" x="160.5" y="524" width="79.5" height="44"/>
+                    <color key="backgroundColor" red="0.95686274510000002" green="0.5450980392" blue="0.1450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <state key="normal" title="转让"/>
                     <connections>
@@ -51,7 +55,7 @@
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iOT-rT-cm8">
                     <rect key="frame" x="241" y="524" width="79" height="44"/>
-                    <color key="backgroundColor" red="0.95686274510000002" green="0.5450980392" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.95686274510000002" green="0.5450980392" blue="0.1450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <state key="normal" title="质押"/>
                     <connections>
@@ -59,7 +63,7 @@
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="HeX-hy-3D6" firstAttribute="height" secondItem="kbl-Xr-YRn" secondAttribute="height" id="Alk-vc-Dwj"/>
                 <constraint firstItem="iOT-rT-cm8" firstAttribute="leading" secondItem="HeX-hy-3D6" secondAttribute="trailing" constant="1" id="GE2-qH-hff"/>
@@ -77,7 +81,7 @@
                 <constraint firstItem="iOT-rT-cm8" firstAttribute="height" secondItem="kbl-Xr-YRn" secondAttribute="height" id="hci-Iw-BCL"/>
                 <constraint firstAttribute="bottom" secondItem="kbl-Xr-YRn" secondAttribute="bottom" id="nhh-MV-Zo1"/>
             </constraints>
-            <point key="canvasLocation" x="295" y="349"/>
+            <point key="canvasLocation" x="-193" y="328"/>
         </view>
     </objects>
 </document>

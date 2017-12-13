@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AdaptationShopVC">
+            <connections>
+                <outlet property="dateLab" destination="ZkC-Yb-QHm" id="bXc-Wk-IqN"/>
+                <outlet property="nextBtn" destination="bsV-pl-7G0" id="o0s-h3-2L1"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lXc-ns-QPt">
+                    <rect key="frame" x="0.0" y="5" width="375" height="48"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="暂存时间至：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4n3-DY-VLD">
+                            <rect key="frame" x="20" y="15" width="92" height="18"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <color key="textColor" red="0.15686274510000001" green="0.15686274510000001" blue="0.15686274510000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请选择日期" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZkC-Yb-QHm">
+                            <rect key="frame" x="117" y="15" width="76.5" height="18"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_right" translatesAutoresizingMaskIntoConstraints="NO" id="vKB-1C-3XV">
+                            <rect key="frame" x="354" y="18" width="6" height="11"/>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AQq-OD-YqT">
+                            <rect key="frame" x="0.0" y="14" width="375" height="34"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="dateClick:" destination="-1" eventType="touchUpInside" id="eJL-aD-fqZ"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="4n3-DY-VLD" firstAttribute="centerY" secondItem="lXc-ns-QPt" secondAttribute="centerY" id="AA3-ea-m2K"/>
+                        <constraint firstAttribute="height" constant="48" id="BT8-bT-fiP"/>
+                        <constraint firstAttribute="bottom" secondItem="AQq-OD-YqT" secondAttribute="bottom" id="LI7-cW-Ro8"/>
+                        <constraint firstAttribute="trailing" secondItem="AQq-OD-YqT" secondAttribute="trailing" id="TLU-Uu-OCq"/>
+                        <constraint firstItem="AQq-OD-YqT" firstAttribute="leading" secondItem="lXc-ns-QPt" secondAttribute="leading" id="YjT-yc-RTq"/>
+                        <constraint firstItem="ZkC-Yb-QHm" firstAttribute="centerY" secondItem="4n3-DY-VLD" secondAttribute="centerY" id="Zg1-ix-Abw"/>
+                        <constraint firstItem="ZkC-Yb-QHm" firstAttribute="leading" secondItem="4n3-DY-VLD" secondAttribute="trailing" constant="5" id="hbF-h0-j5D"/>
+                        <constraint firstAttribute="trailing" secondItem="vKB-1C-3XV" secondAttribute="trailing" constant="15" id="hcU-Zk-DzM"/>
+                        <constraint firstItem="vKB-1C-3XV" firstAttribute="centerY" secondItem="4n3-DY-VLD" secondAttribute="centerY" id="xLn-03-3iR"/>
+                        <constraint firstItem="4n3-DY-VLD" firstAttribute="leading" secondItem="lXc-ns-QPt" secondAttribute="leading" constant="20" id="zpk-Gf-8wv"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bsV-pl-7G0">
+                    <rect key="frame" x="47" y="88" width="280" height="33"/>
+                    <color key="backgroundColor" red="0.95686274510000002" green="0.5450980392" blue="0.1450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="280" id="m0x-Bn-Zzc"/>
+                        <constraint firstAttribute="height" constant="33" id="n9N-D6-nuR"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" title="确认"/>
+                    <connections>
+                        <action selector="nextClick:" destination="-1" eventType="touchUpInside" id="mnB-7m-Q82"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="lXc-ns-QPt" secondAttribute="trailing" id="AYY-eJ-JEK"/>
+                <constraint firstItem="lXc-ns-QPt" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="VFS-f2-Ll0"/>
+                <constraint firstItem="bsV-pl-7G0" firstAttribute="top" secondItem="lXc-ns-QPt" secondAttribute="bottom" constant="35" id="i56-R3-QXQ"/>
+                <constraint firstItem="bsV-pl-7G0" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="q8V-yx-lfk"/>
+                <constraint firstItem="lXc-ns-QPt" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="5" id="ydM-Dx-pSP"/>
+            </constraints>
+            <point key="canvasLocation" x="23" y="-36"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icon_right" width="6" height="11"/>
+    </resources>
+</document>

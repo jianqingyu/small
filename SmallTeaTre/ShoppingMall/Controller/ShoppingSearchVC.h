@@ -7,7 +7,8 @@
 //
 
 #import "BaseViewController.h"
-
+typedef void (^ShoppingSBack)(id model);
 @interface ShoppingSearchVC : BaseViewController
-
+@property (nonatomic,assign)BOOL isCh;
+@property (nonatomic,  copy)ShoppingSBack back;
 @end

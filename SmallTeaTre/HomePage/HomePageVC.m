@@ -7,6 +7,7 @@
 //
 
 #import "HomePageVC.h"
+#import "HomePageHeadSView.h"
 #import "MainTabViewController.h"
 #import "TeaListTableCell.h"
 #import "HYBLoopScrollView.h"
@@ -30,9 +31,9 @@ UINavigationControllerDelegate>{
 @property(nonatomic,strong) NSMutableArray *oneData;
 @property(nonatomic,strong) NSMutableArray *twoData;
 @property(nonatomic,strong) NSMutableArray *dataArray;
-@property (assign,nonatomic) CGFloat height;
-@property (weak,  nonatomic) CustomBackgroundView *baView;
-@property (weak,  nonatomic) ShopShareCustomView *shareView;
+@property(assign,nonatomic) CGFloat height;
+@property(weak,  nonatomic) CustomBackgroundView *baView;
+@property(weak,  nonatomic) ShopShareCustomView *shareView;
 @property(nonatomic,  copy) NSDictionary *versionDic;
 @end
 
@@ -173,6 +174,18 @@ UINavigationControllerDelegate>{
         make.right.equalTo(self.view).offset(0);
         make.bottom.equalTo(self.view).offset(0);
     }];
+    
+    if (@available(iOS 11.0, *)) {
+        self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+        self.tableView.scrollIndicatorInsets = self.tableView.contentInset;
+    }
+    // 11.0以上才有这个属性
+    if (@available(iOS 11.0, *)){
+        self.tableView.estimatedRowHeight = 0;
+        self.tableView.estimatedSectionHeaderHeight = 0;
+        self.tableView.estimatedSectionFooterHeight = 0;
+    }
     self.tableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectZero];
 }
 
@@ -329,7 +342,7 @@ UINavigationControllerDelegate>{
 }
 
 - (void)setupHeadView:(NSArray *)headArr{
-    CGRect headF = CGRectMake(0, 0, SDevWidth, SDevWidth*0.53+46);
+    CGRect headF = CGRectMake(0, 0, SDevWidth, SDevWidth*0.53+40+70+2*6);
     //轮播视图
     UIView *headView = [[UIView alloc]initWithFrame:headF];
     headView.backgroundColor = DefaultColor;
@@ -339,10 +352,18 @@ UINavigationControllerDelegate>{
         make.left.equalTo(headView).offset(0);
         make.top.equalTo(headView).offset(0);
         make.right.equalTo(headView).offset(0);
-        make.bottom.equalTo(headView).offset(-6);
+        make.bottom.equalTo(headView).offset(-(70+2*6));
     }];
     hView.infoArr = headArr;
     self.headView = hView;
+    HomePageHeadSView *sView = [HomePageHeadSView createHeadSView];
+    [headView addSubview:sView];
+    [sView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(headView).offset(0);
+        make.height.mas_equalTo(70);
+        make.right.equalTo(headView).offset(0);
+        make.bottom.equalTo(headView).offset(-6);
+    }];
     self.tableView.tableHeaderView = headView;
 }
 
@@ -371,21 +392,37 @@ UINavigationControllerDelegate>{
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     BOOL isHi = section?self.twoData.count:self.oneData.count;
-    NSString *title = section?@"热门茶叶":@"新茶上架";
+    NSString *title = section?@"hot_tea":@"new_tea";
     UIView *hView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SDevWidth, 18)];
     UIView *heView = [[UIView alloc]initWithFrame:CGRectMake(9.5, 0,SDevWidth-19, 18)];
     [heView setLayerWithW:0.001 andColor:DefaultColor andBackW:0.5];
-    heView.backgroundColor = [UIColor whiteColor];
-    
-    UILabel *lab = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, SDevWidth-30, 18)];
-    lab.text = title;
-    lab.font = [UIFont systemFontOfSize:11];
-    lab.backgroundColor = [UIColor whiteColor];
+    heView.backgroundColor = DefColor;
+
+    UIImageView *image = [[UIImageView alloc]initWithFrame:CGRectMake(0, 3, 45, 12)];
+    image.image = [UIImage imageNamed:title];
     [hView addSubview:heView];
-    [heView addSubview:lab];
+    [heView addSubview:image];
     hView.hidden = !isHi;
     return hView;
 }
+
+//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+//    BOOL isHi = section?self.twoData.count:self.oneData.count;
+//    NSString *title = section?@"热门茶叶":@"新茶上架";
+//    UIView *hView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SDevWidth, 18)];
+//    UIView *heView = [[UIView alloc]initWithFrame:CGRectMake(9.5, 0,SDevWidth-19, 18)];
+//    [heView setLayerWithW:0.001 andColor:DefaultColor andBackW:0.5];
+//    heView.backgroundColor = [UIColor whiteColor];
+//
+//    UILabel *lab = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, SDevWidth-30, 18)];
+//    lab.text = title;
+//    lab.font = [UIFont systemFontOfSize:11];
+//    lab.backgroundColor = [UIColor whiteColor];
+//    [hView addSubview:heView];
+//    [heView addSubview:lab];
+//    hView.hidden = !isHi;
+//    return hView;
+//}
 
 //- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
 //    if (section==1) {

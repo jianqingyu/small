@@ -15,6 +15,7 @@
 #import "ShopShareCustomView.h"
 #import <ShareSDK/ShareSDK.h>
 #import "MainTabViewController.h"
+#import "ChooseStoreInfoTool.h"
 #import <ShareSDKConnector/ShareSDKConnector.h>
 @interface UserCenterViewController ()<UITableViewDelegate,UITableViewDataSource,UINavigationControllerDelegate>
 @property(strong,nonatomic) UITableView *tableView;
@@ -138,6 +139,11 @@
         make.right.equalTo(self.view).offset(0);
         make.bottom.equalTo(self.view).offset(0);
     }];
+    if (@available(iOS 11.0, *)) {
+        self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+        self.tableView.scrollIndicatorInsets = self.tableView.contentInset;
+    }
     self.tableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectZero];
     [self setupHeadView];
     [self setupFootView];
@@ -214,6 +220,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSDictionary *dic = self.list[indexPath.row];
     NSString *class = dic[@"vc"];
+    if ([class isEqualToString:@"UserStoreInfoVC"]) {
+        [ChooseStoreInfoTool chooseInfo:3];
+        return;
+    }
     const char *className = [class cStringUsingEncoding:NSASCIIStringEncoding];
     Class newClass = objc_getClass(className);
     //如果没有则注册一个类

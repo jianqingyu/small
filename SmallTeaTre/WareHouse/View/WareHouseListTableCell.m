@@ -63,7 +63,8 @@
         [self.teaImg sd_setImageWithURL:[NSURL URLWithString:url]
                        placeholderImage:DefaultImage];
         self.wareTLab.text = _orderInfo.goodsName;
-        self.wareSta.text = [NSString stringWithFormat:@"%@ %@",_orderInfo.deportName,_orderInfo.typeName];
+//        self.wareSta.text = [NSString stringWithFormat:@"%@ %@",_orderInfo.deportName,_orderInfo.typeName];
+        self.wareSta.text = _orderInfo.typeName;
         [self.styBtn setTitle:_orderInfo.orderTypeName forState:UIControlStateNormal];
         self.sPriceLab.text = [NSString stringWithFormat:@"茶叶单价:%0.2f/%@",_orderInfo.price,_orderInfo.unitName];
         self.numLab.text = [NSString stringWithFormat:@"成交总量:%@%@",_orderInfo.quantity,_orderInfo.unitName];

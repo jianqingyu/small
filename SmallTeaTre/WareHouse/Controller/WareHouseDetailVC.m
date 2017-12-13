@@ -9,6 +9,9 @@
 #import "WareHouseDetailVC.h"
 #import "NewUIAlertTool.h"
 #import "WareChooseNumVc.h"
+#import "NowAskShopVC.h"
+#import "AdaptationShopVC.h"
+#import "AssignmentShopVC.h"
 #import "WareHouseListTableCell.h"
 @interface WareHouseDetailVC ()<UITableViewDataSource,UITableViewDelegate>
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *btns;
@@ -41,6 +44,12 @@
         make.right.equalTo(self.view).offset(0);
         make.bottom.equalTo(self.view).offset(-44);
     }];
+    // 11.0以上才有这个属性
+    if (@available(iOS 11.0, *)){
+        self.tableView.estimatedRowHeight = 0;
+        self.tableView.estimatedSectionHeaderHeight = 0;
+        self.tableView.estimatedSectionFooterHeight = 0;
+    }
     self.tableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectZero];
 }
 
@@ -81,7 +90,39 @@
 - (IBAction)bottomClick:(UIButton *)sender {
     WareListInfo *listInfo = _arr[0];
     NSInteger idex = [self.btns indexOfObject:sender];
-    if (idex==3) {
+    NSDictionary *dic = self.dicArr[2];
+    if (idex==0){
+        NowAskShopVC *nowVc = [NowAskShopVC new];
+        nowVc.back = ^(BOOL isYes){
+            if (self.back) {
+                self.back(YES);
+            }
+        };
+        nowVc.info = listInfo;
+        [self.navigationController pushViewController:nowVc animated:YES];
+    }else if(idex==1){
+        AdaptationShopVC *adaVc = [AdaptationShopVC new];
+        adaVc.back = ^(BOOL isYes){
+            if (self.back) {
+                self.back(YES);
+            }
+        };
+        adaVc.info = listInfo;
+        [self.navigationController pushViewController:adaVc animated:YES];
+    }else if(idex==2){
+        if ([self compareNowAndOldTime:listInfo]) {
+            AssignmentShopVC *assVc = [AssignmentShopVC new];
+            assVc.back = ^(BOOL isYes){
+                if (self.back) {
+                    self.back(YES);
+                }
+            };
+            assVc.info = listInfo;
+            [self.navigationController pushViewController:assVc animated:YES];
+        }else{
+            [NewUIAlertTool show:dic back:nil];
+        }
+    }else if(idex==3) {
         WareChooseNumVc *numVc = [WareChooseNumVc new];
         numVc.back = ^(BOOL isYes){
             if (self.back) {
@@ -92,13 +133,6 @@
         [self.navigationController pushViewController:numVc animated:YES];
         return;
     }
-    NSDictionary *dic = self.dicArr[idex];
-    if (idex==2) {
-        if ([self compareNowAndOldTime:listInfo]) {
-            dic = self.dicArr[3];
-        }
-    }
-    [NewUIAlertTool show:dic back:nil];
 }
 
 - (BOOL)compareNowAndOldTime:(WareListInfo *)listInfo{

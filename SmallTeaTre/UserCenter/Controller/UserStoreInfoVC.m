@@ -21,17 +21,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"门店信息";
     [self.storeTel setLayerWithW:3 andColor:BordColor andBackW:0.0001];
     [self loadHomeData];
 }
 
 - (void)loadHomeData{
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    NSString *userId;
+    NSString *shopId;
     if ([[SaveUserInfoTool shared].shopId isKindOfClass:[NSString class]]) {
-        userId = [SaveUserInfoTool shared].shopId;
+        shopId = [SaveUserInfoTool shared].shopId;
     }
-    NSString *netUrl = [NSString stringWithFormat:@"%@api/shop/%@",baseNet,userId];
+    NSString *netUrl = [NSString stringWithFormat:@"%@api/shop/%@",baseNet,shopId];
     [BaseApi getGeneralData:^(BaseResponse *response, NSError *error) {
         if ([response.code isEqualToString:@"0000"]&&[YQObjectBool boolForObject:response.result]) {
             UserShopInfo *info = [UserShopInfo objectWithKeyValues:response.result];

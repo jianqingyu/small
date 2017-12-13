@@ -51,11 +51,12 @@
 #define MAIN_COLOR CUSTOM_COLOR(244, 139, 37)
 #define MAINText_COLOR CUSTOM_COLOR(241,43,49)
 #define DefaultColor CUSTOM_COLOR(238,238,238)
+#define DefColor CUSTOM_COLOR(242,242,242)
 #define BackColor CUSTOM_COLOR(247,248,248)
 #define BarColor CUSTOM_COLOR(245,245,247)
 #define BordColor CUSTOM_COLOR(218,218,218)
 //基础接口
-//#define baseNet @"http://www.bestfeng.wang:81/xcb/"
+//#define baseNet @"http://119.23.209.140:82/xcb/"
 //网络接口
 #define baseNet @"http://119.23.209.140:81/xcb/"
 //支付宝支付网址

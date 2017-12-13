@@ -43,7 +43,8 @@
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:dic[@"title"]
                     message:mes preferredStyle:UIAlertControllerStyleAlert];
     // 添加 AlertAction 事件回调（三种类型：默认，取消，警告）
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault
+    NSString *ok = [YQObjectBool boolForObject:dic[@"ok"]]?dic[@"ok"]:@"确定";
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:ok style:UIAlertActionStyleDefault
                                     handler:^(UIAlertAction * _Nonnull action) {
             if (okBlock) {
                 okBlock();
@@ -51,9 +52,15 @@
         // 移除
         [alertController dismissViewControllerAnimated:YES completion:nil];
     }];
+    [alertController addAction:okAction];
+    if ([YQObjectBool boolForObject:dic[@"cancel"]]) {
+        [alertController addAction:[UIAlertAction actionWithTitle:dic[@"cancel"] style:UIAlertActionStyleCancel
+                                            handler:^(UIAlertAction * _Nonnull action){
+            [alertController dismissViewControllerAnimated:YES completion:nil];
+        }]];
+    }
     UIViewController *con = [ShowLoginViewTool getCurrentVC];
     // cancel类自动变成最后一个，警告类推荐放上面
-    [alertController addAction:okAction];
     // 出现
     [con presentViewController:alertController animated:YES completion:nil];
 }

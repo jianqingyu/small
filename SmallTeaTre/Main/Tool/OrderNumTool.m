@@ -24,7 +24,7 @@
 
 + (NSString *)strWithPrice:(float)price{
     //价格取整
-    return [NSString stringWithFormat:@"￥%0.0f",price];
+    return [NSString stringWithFormat:@"￥%0.2f",price];
 }
 
 + (NSString *)strWithTime:(NSString *)time{

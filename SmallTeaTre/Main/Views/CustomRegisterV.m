@@ -12,11 +12,13 @@
 #import "ChooseStoreInfoVC.h"
 #import "ShowLoginViewTool.h"
 #import "MainNavViewController.h"
+#import "MainTabViewController.h"
 @interface CustomRegisterV()
 @property (weak, nonatomic) IBOutlet UITextField *phoneFie;
 @property (weak, nonatomic) IBOutlet UITextField *codeFie;
 @property (weak, nonatomic) IBOutlet ZBButten *getCodeBtn;
 @property (weak, nonatomic) IBOutlet UIButton *nextBtn;
+@property (weak, nonatomic) IBOutlet UITextField *passFie;
 @property (nonatomic, copy) NSString *biz;
 @property (nonatomic,assign)BOOL isSel;
 @end
@@ -68,6 +70,13 @@
 }
 
 - (IBAction)nextClick:(UIButton *)sender {
+    [self rigisterClick:sender];
+}
+
+- (void)rigisterClick:(UIButton *)sender {
+    [self.phoneFie resignFirstResponder];
+    [self.passFie resignFirstResponder];
+    [self.codeFie resignFirstResponder];
     if (!self.isSel) {
         [MBProgressHUD showError:@"请同意协议"];
         return;
@@ -80,32 +89,82 @@
         [MBProgressHUD showError:@"请输入验证码"];
         return;
     }
+    if (self.passFie.text.length<6) {
+        [MBProgressHUD showError:@"密码少于6位"];
+        return;
+    }
+    sender.enabled = NO;
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"phoneNumber"] = self.phoneFie.text;
-    params[@"bizId"] = self.biz;
-    params[@"code"] = self.codeFie.text;
-    NSString *logUrl = [NSString stringWithFormat:@"%@api/sms/verify",baseNet];
-    [BaseApi getGeneralData:^(BaseResponse *response, NSError *error) {
-        if ([response.code isEqualToString:@"0000"]) {
-            [self presentChooseStore];
+    params[@"loginName"] = self.phoneFie.text;
+    params[@"mobile"] = self.phoneFie.text;
+    params[@"password"] = self.passFie.text;
+    NSString *bizS = [self.biz stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString *netUrl = [NSString stringWithFormat:@"%@api/user/register/%@/%@",baseNet,bizS,self.codeFie.text];
+    [BaseApi postJsonData:^(BaseResponse *response, NSError *error) {
+        if ([response.code isEqualToString:@"0000"]&&[YQObjectBool boolForObject:response.result]) {
+            [self saveUserInfo:params and:response];
         }
         NSString *str = [YQObjectBool boolForObject:response.msg]?response.msg:@"操作成功";
         [MBProgressHUD showError:str];
-    } requestURL:logUrl params:params];
+        sender.enabled = YES;
+    } requestURL:netUrl params:params];
 }
-//跳转到选择门店
-- (void)presentChooseStore{
-    NSMutableDictionary *params = [NSMutableDictionary new];
-    params[@"phone"] = self.phoneFie.text;
-    params[@"biz"] = [self.biz stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    params[@"code"] = self.codeFie.text;
-    
-    UIViewController *vc = [ShowLoginViewTool getCurrentVC];
-    ChooseStoreInfoVC *store = [ChooseStoreInfoVC new];
-    store.mutDic = params;
-    [vc presentViewController:store animated:YES completion:nil];
+//跳转到首页
+- (void)saveUserInfo:(NSMutableDictionary *)params and:(BaseResponse *)response{
+    params[@"isLog"] = @YES;
+    Account *account = [Account accountWithDict:params];
+    //自定义类型存储用NSKeyedArchiver
+    [AccountTool saveAccount:account];
+    SaveUserInfoTool *save = [SaveUserInfoTool shared];
+    save.id = response.result[@"id"];
+    save.nickName = response.result[@"nickName"];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UIWindow *window = [UIApplication sharedApplication].keyWindow;
+        window.rootViewController = [[MainTabViewController alloc]init];
+    });
 }
-
+//- (void)oldNet{
+//    if (!self.isSel) {
+//        [MBProgressHUD showError:@"请同意协议"];
+//        return;
+//    }
+//    if (self.phoneFie.text.length!=11) {
+//        [MBProgressHUD showError:@"手机格式不对"];
+//        return;
+//    }
+//    if (self.codeFie.text.length==0) {
+//        [MBProgressHUD showError:@"请输入验证码"];
+//        return;
+//    }
+//    if (self.codeFie.text.length<6) {
+//        [MBProgressHUD showError:@"请输入密码"];
+//        return;
+//    }
+//    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+//    params[@"phoneNumber"] = self.phoneFie.text;
+//    params[@"bizId"] = self.biz;
+//    params[@"code"] = self.codeFie.text;
+//    NSString *logUrl = [NSString stringWithFormat:@"%@api/sms/verify",baseNet];
+//    [BaseApi getGeneralData:^(BaseResponse *response, NSError *error) {
+//        if ([response.code isEqualToString:@"0000"]) {
+//            [self presentChooseStore];
+//        }
+//        NSString *str = [YQObjectBool boolForObject:response.msg]?response.msg:@"操作成功";
+//        [MBProgressHUD showError:str];
+//    } requestURL:logUrl params:params];
+//}
+////跳转到选择门店
+//- (void)presentChooseStore{
+//    NSMutableDictionary *params = [NSMutableDictionary new];
+//    params[@"phone"] = self.phoneFie.text;
+//    params[@"biz"] = [self.biz stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+//    params[@"code"] = self.codeFie.text;
+//
+//    UIViewController *vc = [ShowLoginViewTool getCurrentVC];
+//    ChooseStoreInfoVC *store = [ChooseStoreInfoVC new];
+//    store.mutDic = params;
+//    [vc presentViewController:store animated:YES completion:nil];
+//}
 - (IBAction)proClick:(id)sender {
     UIViewController *vc = [ShowLoginViewTool getCurrentVC];
     MainProtocolVC *pro = [MainProtocolVC new];

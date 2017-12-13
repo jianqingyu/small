@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *areaTab;
 @property (nonatomic, copy) NSArray *allArr;
 @property (nonatomic, copy) NSArray *areaArr;
+@property (nonatomic, copy) NSString *allName;
 @end
 @implementation ChooseAddInfoView
 
@@ -45,6 +46,7 @@
         if ([response.code isEqualToString:@"0000"]&&[YQObjectBool boolForObject:response.result]) {
             NSArray *arr = [AddressListInfo objectArrayWithKeyValuesArray:response.result];
             AddressListInfo *info = arr[0];
+            self.allName = info.name;
             self.areaArr = info.children;
             self.allArr = arr;
             [self.allTab reloadData];
@@ -103,10 +105,13 @@
         AddressListInfo *info = self.allArr[indexPath.row];
         self.areaArr = info.children;
         [self.areaTab reloadData];
+        self.allName = info.name;
     }else{
         NSDictionary *dic = self.areaArr[indexPath.row];
+        NSMutableDictionary *mutD = dic.mutableCopy;
+        mutD[@"name"] = [NSString stringWithFormat:@"%@%@",self.allName,dic[@"name"]];
         if (self.popBack) {
-            self.popBack(dic,YES);
+            self.popBack(mutD,YES);
         }
     }
 }

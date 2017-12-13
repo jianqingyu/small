@@ -7,6 +7,8 @@
 //
 
 #import "WareHouseVC.h"
+#import "TemporaryDepVC.h"
+#import "ChooseStoreInfoTool.h"
 #import "UserManagerMenuHrizontal.h"
 #import "UserManagerScrollPageView.h"
 #define MENUHEIHT 40
@@ -22,8 +24,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     titleArray = @[@{@"title":@"华南仓",@"deportId":@"0001"},
-                   @{@"title":@"云南仓",@"deportId":@"0002"}],
+                   @{@"title":@"云南仓",@"deportId":@"0002"}];
     [self initCustomView];
+    [self setNaviBtn];
+}
+
+- (void)setNaviBtn{
+    UIButton *seaBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    seaBtn.frame = CGRectMake(0, 0, 30, 30);
+    [seaBtn addTarget:self action:@selector(addClick) forControlEvents:UIControlEventTouchUpInside];
+    [seaBtn setImage:[UIImage imageNamed:@"icon_add"] forState:UIControlStateNormal];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:seaBtn];
+}
+
+- (void)addClick{
+    [ChooseStoreInfoTool chooseInfo:2];
+    
 }
 
 #pragma mark UI初始化

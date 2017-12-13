@@ -12,6 +12,7 @@
 #import "WareHouseDetailVC.h"
 #import "WareConfirmRedeemVc.h"
 #import "WareListInfo.h"
+#import "AssignmentShopVC.h"
 @interface UserManagerTableView()<UITableViewDataSource,UITableViewDelegate>{
     int curPage;
     int pageCount;
@@ -44,6 +45,12 @@
             make.right.equalTo(self).offset(0);
             make.bottom.equalTo(self).offset(0);
         }];
+        // 11.0以上才有这个属性
+        if (@available(iOS 11.0, *)){
+            _mTableView.estimatedRowHeight = 0;
+            _mTableView.estimatedSectionHeaderHeight = 0;
+            _mTableView.estimatedSectionFooterHeight = 0;
+        }
         [self setupHeaderRefresh];
     }
     return self;
@@ -197,36 +204,51 @@
 }
 //跳到下一步
 - (void)gotoNextViewControll:(WareListInfo *)listInfo{
-    switch (listInfo.transStatus) {
-//        case 0:{
-//            WareChooseNumVc *wareVc = [WareChooseNumVc new];
-//            wareVc.isSel = YES;
-//            [self.superNav pushViewController:wareVc animated:YES];
-//        }
-//            break;
-        case 1:case 3:case 6:{
+    //暂存交易成功
+    if ([listInfo.transType isEqualToString:@"0001"]&&listInfo.transStatus==3) {
+        WareHouseDetailVC *detailVc = [WareHouseDetailVC new];
+        detailVc.back = ^(BOOL isYes){
+            [_mTableView.header beginRefreshing];
+        };
+        detailVc.title = listInfo.goodsName;
+        detailVc.arr = @[listInfo];
+        [self.superNav pushViewController:detailVc animated:YES];
+        return;
+    }
+    //质押审核通过 -- 交易成功
+    if ([listInfo.transType isEqualToString:@"0004"]) {
+        if (listInfo.transStatus==1||listInfo.transStatus==3) {
             WareConfirmRedeemVc *redVc = [WareConfirmRedeemVc new];
             redVc.back = ^(BOOL isYes){
                 [_mTableView.header beginRefreshing];
             };
             redVc.info = listInfo;
             [self.superNav pushViewController:redVc animated:YES];
+            return;
         }
-            break;
-        case 8:{
-            WareHouseDetailVC *detailVc = [WareHouseDetailVC new];
-            detailVc.back = ^(BOOL isYes){
-                [_mTableView.header beginRefreshing];
-            };
-            detailVc.title = listInfo.goodsName;
-            detailVc.arr = @[listInfo];
-            [self.superNav pushViewController:detailVc animated:YES];
-        }
-            break;
-        default:
-            [MBProgressHUD showError:listInfo.transStatusName];
-            break;
     }
+    //赎回审核通过
+    if ([listInfo.transType isEqualToString:@"0002"]&&listInfo.transStatus==1) {
+        WareConfirmRedeemVc *redVc = [WareConfirmRedeemVc new];
+        redVc.back = ^(BOOL isYes){
+            [_mTableView.header beginRefreshing];
+        };
+        redVc.info = listInfo;
+        [self.superNav pushViewController:redVc animated:YES];
+        return;
+    }
+    //取消转让
+    if ([listInfo.transType isEqualToString:@"0003"]&&listInfo.transStatus==0) {
+        AssignmentShopVC *assVc = [AssignmentShopVC new];
+        assVc.back = ^(BOOL isYes){
+            [_mTableView.header beginRefreshing];
+        };
+        assVc.info = listInfo;
+        assVc.isEdit = YES;
+        [self.superNav pushViewController:assVc animated:YES];
+        return;
+    }
+    [MBProgressHUD showError:listInfo.transStatusName];
 }
 
 @end
