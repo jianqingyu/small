@@ -36,6 +36,10 @@
         [MBProgressHUD showError:@"请输入昵称"];
         return;
     }
+    if (self.nameFie.text.length>20) {
+        [MBProgressHUD showError:@"昵称不能大于20字符"];
+        return;
+    }
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     if ([[SaveUserInfoTool shared].id isKindOfClass:[NSString class]]) {
         params[@"userId"] = [SaveUserInfoTool shared].id;

@@ -38,8 +38,6 @@
     [self setupHeaderRefresh];
     if (@available(iOS 11.0, *)) {
         
-    } else {
-        
     }
 }
 
@@ -251,7 +249,7 @@
         totalCount = [dict[@"totalPage"]intValue];
         NSArray *seaArr = [ShoppingListInfo objectArrayWithKeyValuesArray:dict[@"result"]];
         [_dataArray addObjectsFromArray:seaArr];
-        if(curPage>=totalCount){
+        if(curPage>totalCount){
             //已加载全部数据
             MJRefreshAutoNormalFooter*footer = (MJRefreshAutoNormalFooter*)_tableView.footer;
             [footer setTitle:@"没有更多了" forState:MJRefreshStateNoMoreData];

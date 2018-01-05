@@ -11,4 +11,5 @@
 @interface UserCenterHeadView : UIView
 + (UserCenterHeadView *)createHeadView;
 - (void)setUserInfo;
+- (void)changeBtnNew:(BOOL)isNew;
 @end

@@ -8,12 +8,12 @@
 
 #import "AppDelegate.h"
 #import "WXApi.h"
+#import "WeChatManager.h"
 #import "WeiboSDK.h"
 #import "CommonUtils.h"
 #import "Reachability.h"
 #import "ShowLoginViewTool.h"
 #import "UIWindow+Extension.h"
-
 #import <ShareSDK/ShareSDK.h>
 #import <TencentOpenAPI/TencentOAuth.h>
 #import <TencentOpenAPI/QQApiInterface.h>
@@ -39,12 +39,13 @@
     hostReach = [Reachability reachabilityWithHostName:@"www.apple.com"];
     [hostReach startNotifier];
     
-//    UIImage *backImg = [CommonUtils createImageWithColor:BarColor];
     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"icon_navBack"] forBarMetrics:UIBarMetricsDefault];
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     NSDictionary *attbutes = @{NSForegroundColorAttributeName:[UIColor whiteColor]};
     [[UINavigationBar appearance]setTitleTextAttributes:attbutes];
     
+    //向微信注册
+    [WXApi registerApp:@"wxce488c9ce08c20e3" enableMTA:YES];
     [self setShareSDK];
     return YES;
 }
@@ -90,53 +91,28 @@
             default:
                 break;
         }
-
     }];
-//    [ShareSDK registerApp:@"20f981628abd0"
-//          activePlatforms:@[@(SSDKPlatformTypeSinaWeibo),
-//                            @(SSDKPlatformTypeWechat),
-//                            @(SSDKPlatformTypeQQ)]
-//                 onImport:^(SSDKPlatformType platformType)
-//     {
-//         switch (platformType)
-//         {
-//             case SSDKPlatformTypeWechat:
-//                 [ShareSDKConnector connectWeChat:[WXApi class]];
-//                 break;
-//             case SSDKPlatformTypeQQ:
-//                 [ShareSDKConnector connectQQ:[QQApiInterface class] tencentOAuthClass:[TencentOAuth class]];
-//                 break;
-//             case SSDKPlatformTypeSinaWeibo:
-//                 [ShareSDKConnector connectWeibo:[WeiboSDK class]];
-//                 break;
-//             default:
-//                 break;
-//         }
-//     }
-//          onConfiguration:^(SSDKPlatformType platformType, NSMutableDictionary *appInfo)
-//     {
-//         switch (platformType)
-//         {
-//             case SSDKPlatformTypeSinaWeibo:
-//                 //设置新浪微博应用信息,其中authType设置为使用SSO＋Web形式授权
-//                 [appInfo SSDKSetupSinaWeiboByAppKey:@"2341659063"
-//                                           appSecret:@"31df936deb0b727abff9aace6eaaf07c"
-//                                         redirectUri:@"http://www.sharesdk.cn"
-//                                            authType:SSDKAuthTypeBoth];
-//                 break;
-//             case SSDKPlatformTypeWechat:
-//                 [appInfo SSDKSetupWeChatByAppId:@"wxce488c9ce08c20e3"
-//                                       appSecret:@"203e4b15ebfc1a03475c2ad0809667ee"];
-//                 break;
-//             case SSDKPlatformTypeQQ:
-//                 [appInfo SSDKSetupQQByAppId:@"1106339351"//QQ41F16617
-//                                      appKey:@"dXpXeg8jKculB0SS"
-//                                    authType:SSDKAuthTypeBoth];
-//                 break;
-//             default:
-//                 break;
-//         }
-//     }];
+}
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{
+    if ([WXApi handleOpenURL:url delegate:(id)[WeChatManager sharedManager]]) {
+        return YES;
+    }
+    return [TencentOAuth HandleOpenURL:url];
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(nonnull NSURL *)url options:(nonnull NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options{
+    if ([WXApi handleOpenURL:url delegate:(id)[WeChatManager sharedManager]]) {
+        return YES;
+    }
+    return [TencentOAuth HandleOpenURL:url];
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    if ([WXApi handleOpenURL:url delegate:(id)[WeChatManager sharedManager]]) {
+        return YES;
+    }
+    return [TencentOAuth HandleOpenURL:url];
 }
 
 - (void)reachabilityChanged:(NSNotification *)note {

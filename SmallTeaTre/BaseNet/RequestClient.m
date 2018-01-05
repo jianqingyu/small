@@ -14,7 +14,7 @@
     dispatch_once(&onceToken, ^{
         _sharedClient = [[RequestClient alloc] initWithBaseURL:[NSURL URLWithString:ROOT_URL]];
         _sharedClient.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
-        _sharedClient.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"text/json",@"application/json",@"text/javascript",nil];
+        _sharedClient.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"text/json",@"application/json",@"text/javascript",@"text/plain",nil];
         _sharedClient.requestSerializer.timeoutInterval = 30;
 //       NSStringEncoding enc = CFStringConvertEncodingToNSStringEncoding (kCFStringEncodingGB_18030_2000);
 //         _sharedClient.requestSerializer.stringEncoding = enc;

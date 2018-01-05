@@ -10,4 +10,5 @@
 
 @interface PackagingTool : NSObject
 + (BOOL)stringContainsEmoji:(NSString *)string;
++ (NSString*)removeEmoji:(NSString *)str;
 @end

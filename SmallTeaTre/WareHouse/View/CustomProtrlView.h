@@ -11,5 +11,6 @@ typedef void (^CProtrlBack)(BOOL isYes);
 @interface CustomProtrlView : UIView
 + (id)creatCustomView;
 @property (nonatomic, copy)NSString *str;
+@property (nonatomic, copy)NSString *titleStr;
 @property (nonatomic, copy)CProtrlBack back;
 @end

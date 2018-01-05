@@ -8,8 +8,8 @@
 
 #import "CustomRegisterV.h"
 #import "ZBButten.h"
+#import "ChooseStoreInfoTool.h"
 #import "MainProtocolVC.h"
-#import "ChooseStoreInfoVC.h"
 #import "ShowLoginViewTool.h"
 #import "MainNavViewController.h"
 #import "MainTabViewController.h"
@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet ZBButten *getCodeBtn;
 @property (weak, nonatomic) IBOutlet UIButton *nextBtn;
 @property (weak, nonatomic) IBOutlet UITextField *passFie;
+@property (weak, nonatomic) IBOutlet UIView *passView;
 @property (nonatomic, copy) NSString *biz;
 @property (nonatomic,assign)BOOL isSel;
 @end
@@ -38,6 +39,16 @@
         [self.getCodeBtn setbuttenfrontTitle:@"" backtitle:@"s后获取"];
     }
     return self;
+}
+
+- (void)setLogType:(int)logType{
+    if (logType) {
+        _logType = logType;
+        BOOL isPhone = _logType==1;
+        NSString *str = isPhone?@"注册":@"登录";
+        [self.nextBtn setTitle:str forState:UIControlStateNormal];
+        self.passView.hidden = !isPhone;
+    }
 }
 
 - (IBAction)codeClick:(UIButton *)sender {
@@ -85,21 +96,37 @@
         [MBProgressHUD showError:@"手机格式不对"];
         return;
     }
+    if (self.biz.length==0) {
+        [MBProgressHUD showError:@"未获取验证码"];
+        return;
+    }
     if (self.codeFie.text.length==0) {
         [MBProgressHUD showError:@"请输入验证码"];
         return;
     }
-    if (self.passFie.text.length<6) {
-        [MBProgressHUD showError:@"密码少于6位"];
-        return;
-    }
-    sender.enabled = NO;
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"loginName"] = self.phoneFie.text;
     params[@"mobile"] = self.phoneFie.text;
-    params[@"password"] = self.passFie.text;
+    NSString *str;
+    if (self.logType!=1) {
+        str = @"bind";
+        SaveUserInfoTool *save = [SaveUserInfoTool shared];
+        NSString *qq = save.isQQ?@"qq":@"wx";
+        params[qq] = save.openId;
+        params[@"nickName"] = save.nickName;
+        params[@"imgUrl"] = save.imgUrl;
+    }else{
+        if (self.passFie.text.length<6) {
+            [MBProgressHUD showError:@"密码少于6位"];
+            return;
+        }else{
+            params[@"password"] = self.passFie.text;
+            str = @"register";
+        }
+    }
+    sender.enabled = NO;
     NSString *bizS = [self.biz stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSString *netUrl = [NSString stringWithFormat:@"%@api/user/register/%@/%@",baseNet,bizS,self.codeFie.text];
+    NSString *netUrl = [NSString stringWithFormat:@"%@api/user/%@/%@/%@",baseNet,str,bizS,self.codeFie.text];
     [BaseApi postJsonData:^(BaseResponse *response, NSError *error) {
         if ([response.code isEqualToString:@"0000"]&&[YQObjectBool boolForObject:response.result]) {
             [self saveUserInfo:params and:response];
@@ -111,17 +138,39 @@
 }
 //跳转到首页
 - (void)saveUserInfo:(NSMutableDictionary *)params and:(BaseResponse *)response{
-    params[@"isLog"] = @YES;
+    params[@"isLog"] = @(self.logType);
+    params[@"refeshKey"] = [AccountTool account].refeshKey;
     Account *account = [Account accountWithDict:params];
     //自定义类型存储用NSKeyedArchiver
     [AccountTool saveAccount:account];
     SaveUserInfoTool *save = [SaveUserInfoTool shared];
+    save.haveLog = YES;
     save.id = response.result[@"id"];
     save.nickName = response.result[@"nickName"];
     dispatch_async(dispatch_get_main_queue(), ^{
         UIWindow *window = [UIApplication sharedApplication].keyWindow;
         window.rootViewController = [[MainTabViewController alloc]init];
     });
+}
+
+- (IBAction)proClick:(id)sender {
+    UIViewController *vc = [ShowLoginViewTool getCurrentVC];
+    MainProtocolVC *pro = [MainProtocolVC new];
+    pro.typeId = @"0001";
+    pro.title = @"用户注册协议";
+    pro.isFir = YES;
+    MainNavViewController *main = [[MainNavViewController alloc]initWithRootViewController:pro];
+    [vc presentViewController:main animated:YES completion:nil];
+}
+
+- (IBAction)saveClick:(id)sender {
+    UIViewController *vc = [ShowLoginViewTool getCurrentVC];
+    MainProtocolVC *pro = [MainProtocolVC new];
+    pro.typeId = @"0002";
+    pro.title = @"仓储管理协议";
+    pro.isFir = YES;
+    MainNavViewController *main = [[MainNavViewController alloc]initWithRootViewController:pro];
+    [vc presentViewController:main animated:YES completion:nil];
 }
 //- (void)oldNet{
 //    if (!self.isSel) {
@@ -165,24 +214,4 @@
 //    store.mutDic = params;
 //    [vc presentViewController:store animated:YES completion:nil];
 //}
-- (IBAction)proClick:(id)sender {
-    UIViewController *vc = [ShowLoginViewTool getCurrentVC];
-    MainProtocolVC *pro = [MainProtocolVC new];
-    pro.typeId = @"0001";
-    pro.title = @"用户注册协议";
-    pro.isFir = YES;
-    MainNavViewController *main = [[MainNavViewController alloc]initWithRootViewController:pro];
-    [vc presentViewController:main animated:YES completion:nil];
-}
-
-- (IBAction)saveClick:(id)sender {
-    UIViewController *vc = [ShowLoginViewTool getCurrentVC];
-    MainProtocolVC *pro = [MainProtocolVC new];
-    pro.typeId = @"0002";
-    pro.title = @"仓储管理协议";
-    pro.isFir = YES;
-    MainNavViewController *main = [[MainNavViewController alloc]initWithRootViewController:pro];
-    [vc presentViewController:main animated:YES completion:nil];
-}
-
 @end

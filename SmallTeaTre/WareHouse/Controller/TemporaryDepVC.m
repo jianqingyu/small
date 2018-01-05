@@ -12,6 +12,7 @@
 #import "CustomChWareHouse.h"
 #import "CustomDatePick.h"
 #import "CustomProtrlView.h"
+#import "MainTabViewController.h"
 #import "CustomBackgroundView.h"
 @interface TemporaryDepVC ()<UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *nextBtn;
@@ -49,7 +50,7 @@
 #pragma mark -- 网络请求
 - (void)loadProData{
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    NSString *netUrl = [NSString stringWithFormat:@"%@%@",baseNet,@"api/help/protocol"];
+    NSString *netUrl = [NSString stringWithFormat:@"%@api/help/type/0002",baseNet];
     [BaseApi getGeneralData:^(BaseResponse *response, NSError *error) {
         if ([response.code isEqualToString:@"0000"]&&[YQObjectBool boolForObject:response.result]) {
             NSDictionary *dic = response.result[0];
@@ -161,6 +162,7 @@
 #pragma mark -- 弹出协议
 - (void)loadMainProView{
     CustomProtrlView *pView = [CustomProtrlView creatCustomView];
+    pView.titleStr = @"仓储管理服务协议";
     [self.view addSubview:pView];
     [pView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view).offset(0);
@@ -169,28 +171,41 @@
         make.bottom.equalTo(self.view).offset(0);
     }];
     pView.back = ^(BOOL isYes){
-        NSMutableDictionary *params = [NSMutableDictionary dictionary];
-        params[@"userId"] = [SaveUserInfoTool shared].id;;
-        params[@"goodsId"] = self.shopInfo.id;
-        params[@"deportId"] = self.deportId;
-        params[@"price"] = self.sPriceFie.text;
-        params[@"quantity"] = self.numFie.text;
-        params[@"endTime"] = self.dateLab.text;
-        NSString *netUrl = [NSString stringWithFormat:@"%@api/store/zc/apply",baseNet];
-        [BaseApi postJsonData:^(BaseResponse *response, NSError *error) {
-            if ([response.code isEqualToString:@"0000"]) {
-                [NewUIAlertTool show:self.dic back:^{
-                    [self.navigationController popViewControllerAnimated:YES];
-                }];
-            }else{
-                NSString *str = response.msg?response.msg:@"查询失败";
-                [MBProgressHUD showError:str];
-            }
-        } requestURL:netUrl params:params];
+        [self submitWareTeaRequest];
         self.proView.hidden = YES;
     };
     pView.hidden = YES;
     self.proView = pView;
+}
+
+- (void)submitWareTeaRequest{
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"userId"] = [SaveUserInfoTool shared].id;;
+    params[@"goodsId"] = self.shopInfo.id;
+    params[@"deportId"] = self.deportId;
+    params[@"price"] = self.sPriceFie.text;
+    params[@"quantity"] = self.numFie.text;
+    params[@"endTime"] = self.dateLab.text;
+    NSString *netUrl = [NSString stringWithFormat:@"%@api/store/zc/apply",baseNet];
+    [BaseApi postJsonData:^(BaseResponse *response, NSError *error) {
+        if ([response.code isEqualToString:@"0000"]) {
+            [NewUIAlertTool show:self.dic back:^{
+                if (self.isAdd) {
+                    NSMutableArray *navigationArray = [[NSMutableArray alloc] initWithArray: self.navigationController.viewControllers];
+                    [navigationArray removeLastObject];
+                    self.navigationController.viewControllers = navigationArray;
+                    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+                    MainTabViewController *tab = (MainTabViewController *)delegate.window.rootViewController;
+                    tab.selectedIndex = 2;
+                }else{
+                    [self.navigationController popViewControllerAnimated:YES];
+                }
+            }];
+        }else{
+            NSString *str = response.msg?response.msg:@"查询失败";
+            [MBProgressHUD showError:str];
+        }
+    } requestURL:netUrl params:params];
 }
 
 - (IBAction)chooseCang:(id)sender {
@@ -233,6 +248,10 @@
         [MBProgressHUD showError:@"请选择时间"];
         return;
     }
+    if (![self compareWithStr:self.dateStr]) {
+        [MBProgressHUD showError:@"暂存时间有误"];
+        return;
+    }
     self.proView.hidden = NO;
 }
 
@@ -242,6 +261,27 @@
         self.aPriceFie.text = [OrderNumTool strWithPrice:aPrice];
     }
 }
+
+- (BOOL)compareWithStr:(NSString *)anStr
+{
+    NSDateFormatter *df = [[NSDateFormatter alloc]init];
+    [df setDateFormat:@"yyyy-MM-dd"];
+    
+    NSDate *now = [NSDate date];
+    NSString *oneDayStr = [df stringFromDate:now];
+    NSDate *dateA = [df dateFromString:oneDayStr];
+    
+    NSDate *dateB = [[NSDate alloc]init];
+    dateB = [df dateFromString:anStr];
+    NSComparisonResult result = [dateA compare:dateB];
+    if (result == NSOrderedAscending){  // oneDateStr < anotherDateStr
+        return YES;
+    }else if (result == NSOrderedDescending){  // oneDateStr > anotherDateStr
+        return NO;
+    }
+    return NO;
+}
+
 /*
 #pragma mark - Navigation
 

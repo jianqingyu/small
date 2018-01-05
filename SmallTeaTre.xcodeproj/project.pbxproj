@@ -18,6 +18,9 @@
 		293A2DBF1FC67EF200B7F0F5 /* HomePageHeadSView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 293A2DBE1FC67EF200B7F0F5 /* HomePageHeadSView.xib */; };
 		293A2DC31FC6854D00B7F0F5 /* TemporaryDepVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 293A2DC11FC6854D00B7F0F5 /* TemporaryDepVC.m */; };
 		293A2DC41FC6854D00B7F0F5 /* TemporaryDepVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 293A2DC21FC6854D00B7F0F5 /* TemporaryDepVC.xib */; };
+		29503BC91FE8B52E00A18E95 /* SaveUserInfoTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 29503BC71FE8B52E00A18E95 /* SaveUserInfoTool.m */; };
+		29503BCD1FE8C76200A18E95 /* WeChatManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 29503BCC1FE8C76200A18E95 /* WeChatManager.m */; };
+		29829B481FEA526900B2310B /* LoggingWithDataTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 29829B471FEA526900B2310B /* LoggingWithDataTool.m */; };
 		298FE38F1FC7BE0B009604D9 /* AssignmentShopVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 298FE38D1FC7BE0B009604D9 /* AssignmentShopVC.m */; };
 		298FE3901FC7BE0B009604D9 /* AssignmentShopVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 298FE38E1FC7BE0B009604D9 /* AssignmentShopVC.xib */; };
 		298FE3941FC7C1C6009604D9 /* NowAskShopVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 298FE3921FC7C1C6009604D9 /* NowAskShopVC.m */; };
@@ -42,7 +45,6 @@
 		791A9FEF1F5FE158007FDC11 /* HomePageHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 791A9FEE1F5FE158007FDC11 /* HomePageHeadView.xib */; };
 		792125B21F62B24B005F129B /* ShoppingSearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 792125B01F62B24B005F129B /* ShoppingSearchVC.m */; };
 		792125B31F62B24B005F129B /* ShoppingSearchVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 792125B11F62B24B005F129B /* ShoppingSearchVC.xib */; };
-		797D23C81F70CCF300AFAFEC /* SaveUserInfoTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 797D23C71F70CCF300AFAFEC /* SaveUserInfoTool.m */; };
 		7988C48A1F72437400E4D7DF /* UserMyOrderListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7988C4881F72437400E4D7DF /* UserMyOrderListVC.m */; };
 		7988C48B1F72437400E4D7DF /* UserMyOrderListVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7988C4891F72437400E4D7DF /* UserMyOrderListVC.xib */; };
 		7988C48E1F72639C00E4D7DF /* WareListInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 7988C48D1F72639C00E4D7DF /* WareListInfo.m */; };
@@ -227,6 +229,11 @@
 		293A2DC01FC6854D00B7F0F5 /* TemporaryDepVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TemporaryDepVC.h; sourceTree = "<group>"; };
 		293A2DC11FC6854D00B7F0F5 /* TemporaryDepVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TemporaryDepVC.m; sourceTree = "<group>"; };
 		293A2DC21FC6854D00B7F0F5 /* TemporaryDepVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TemporaryDepVC.xib; sourceTree = "<group>"; };
+		29503BC71FE8B52E00A18E95 /* SaveUserInfoTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaveUserInfoTool.m; sourceTree = "<group>"; };
+		29503BCB1FE8C76200A18E95 /* WeChatManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeChatManager.h; sourceTree = "<group>"; };
+		29503BCC1FE8C76200A18E95 /* WeChatManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeChatManager.m; sourceTree = "<group>"; };
+		29829B461FEA526900B2310B /* LoggingWithDataTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoggingWithDataTool.h; sourceTree = "<group>"; };
+		29829B471FEA526900B2310B /* LoggingWithDataTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoggingWithDataTool.m; sourceTree = "<group>"; };
 		298FE38C1FC7BE0B009604D9 /* AssignmentShopVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AssignmentShopVC.h; sourceTree = "<group>"; };
 		298FE38D1FC7BE0B009604D9 /* AssignmentShopVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AssignmentShopVC.m; sourceTree = "<group>"; };
 		298FE38E1FC7BE0B009604D9 /* AssignmentShopVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AssignmentShopVC.xib; sourceTree = "<group>"; };
@@ -265,7 +272,6 @@
 		792125B01F62B24B005F129B /* ShoppingSearchVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingSearchVC.m; sourceTree = "<group>"; };
 		792125B11F62B24B005F129B /* ShoppingSearchVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShoppingSearchVC.xib; sourceTree = "<group>"; };
 		797D23C61F70CCF300AFAFEC /* SaveUserInfoTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaveUserInfoTool.h; sourceTree = "<group>"; };
-		797D23C71F70CCF300AFAFEC /* SaveUserInfoTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaveUserInfoTool.m; sourceTree = "<group>"; };
 		7988C4871F72437400E4D7DF /* UserMyOrderListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserMyOrderListVC.h; sourceTree = "<group>"; };
 		7988C4881F72437400E4D7DF /* UserMyOrderListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserMyOrderListVC.m; sourceTree = "<group>"; };
 		7988C4891F72437400E4D7DF /* UserMyOrderListVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserMyOrderListVC.xib; sourceTree = "<group>"; };
@@ -701,18 +707,18 @@
 			children = (
 				798E08B61F58FC3E005C1F2B /* StrWithIntTool.h */,
 				798E08B71F58FC3E005C1F2B /* StrWithIntTool.m */,
+				798E08C41F58FC3E005C1F2B /* YQTextView.h */,
+				798E08C51F58FC3E005C1F2B /* YQTextView.m */,
 				798E08BA1F58FC3E005C1F2B /* UIView+Extension.h */,
 				798E08BB1F58FC3E005C1F2B /* UIView+Extension.m */,
 				798E08BC1F58FC3E005C1F2B /* UIWindow+Extension.h */,
 				798E08BD1F58FC3E005C1F2B /* UIWindow+Extension.m */,
-				798E08B81F58FC3E005C1F2B /* UIAlertController+supportedinterface.h */,
-				798E08B91F58FC3E005C1F2B /* UIAlertController+supportedinterface.m */,
 				798E08C01F58FC3E005C1F2B /* YQStatusPhotosView.h */,
 				798E08C11F58FC3E005C1F2B /* YQStatusPhotosView.m */,
 				798E08C21F58FC3E005C1F2B /* YQStatusPhotoView.h */,
 				798E08C31F58FC3E005C1F2B /* YQStatusPhotoView.m */,
-				798E08C41F58FC3E005C1F2B /* YQTextView.h */,
-				798E08C51F58FC3E005C1F2B /* YQTextView.m */,
+				798E08B81F58FC3E005C1F2B /* UIAlertController+supportedinterface.h */,
+				798E08B91F58FC3E005C1F2B /* UIAlertController+supportedinterface.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -743,14 +749,10 @@
 				798E08DF1F58FC3E005C1F2B /* ArrayWithDict.m */,
 				798E08BE1F58FC3E005C1F2B /* YQObjectBool.h */,
 				798E08BF1F58FC3E005C1F2B /* YQObjectBool.m */,
-				798E08E01F58FC3E005C1F2B /* CommonUsedTool.h */,
-				798E08E11F58FC3E005C1F2B /* CommonUsedTool.m */,
 				798E08E21F58FC3E005C1F2B /* CommonUtils.h */,
 				798E08E31F58FC3E005C1F2B /* CommonUtils.m */,
 				798E08E41F58FC3E005C1F2B /* GCDAfterDone.h */,
 				798E08E51F58FC3E005C1F2B /* GCDAfterDone.m */,
-				798E08E71F58FC3E005C1F2B /* MBProgressHUD+MJ.h */,
-				798E08E81F58FC3E005C1F2B /* MBProgressHUD+MJ.m */,
 				798E08E91F58FC3E005C1F2B /* Md5PassWord.h */,
 				798E08EA1F58FC3E005C1F2B /* Md5PassWord.m */,
 				798E08EB1F58FC3E005C1F2B /* NewUIAlertTool.h */,
@@ -759,6 +761,10 @@
 				798E08EE1F58FC3E005C1F2B /* OrderNumTool.m */,
 				798E08EF1F58FC3E005C1F2B /* PackagingTool.h */,
 				798E08F01F58FC3E005C1F2B /* PackagingTool.m */,
+				798E08E01F58FC3E005C1F2B /* CommonUsedTool.h */,
+				798E08E11F58FC3E005C1F2B /* CommonUsedTool.m */,
+				798E08E71F58FC3E005C1F2B /* MBProgressHUD+MJ.h */,
+				798E08E81F58FC3E005C1F2B /* MBProgressHUD+MJ.m */,
 				798E08F11F58FC3E005C1F2B /* YQItemTool.h */,
 				798E08F21F58FC3E005C1F2B /* YQItemTool.m */,
 				292C694C1FD6778E001CDF75 /* ChooseStoreInfoTool.h */,
@@ -766,7 +772,11 @@
 				79F3559A1F66A42C0042ABA0 /* ShowHidenTabBar.h */,
 				79F3559B1F66A42C0042ABA0 /* ShowHidenTabBar.m */,
 				797D23C61F70CCF300AFAFEC /* SaveUserInfoTool.h */,
-				797D23C71F70CCF300AFAFEC /* SaveUserInfoTool.m */,
+				29503BC71FE8B52E00A18E95 /* SaveUserInfoTool.m */,
+				29503BCB1FE8C76200A18E95 /* WeChatManager.h */,
+				29503BCC1FE8C76200A18E95 /* WeChatManager.m */,
+				29829B461FEA526900B2310B /* LoggingWithDataTool.h */,
+				29829B471FEA526900B2310B /* LoggingWithDataTool.m */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -1557,7 +1567,9 @@
 				790224341F60E714003525F2 /* UserEditPasswordVC.m in Sources */,
 				798E08A71F58FC2C005C1F2B /* NoNetViewController.m in Sources */,
 				798E09371F58FC3E005C1F2B /* ZBButten.m in Sources */,
+				29503BC91FE8B52E00A18E95 /* SaveUserInfoTool.m in Sources */,
 				798E09101F58FC3E005C1F2B /* UIWindow+Extension.m in Sources */,
+				29503BCD1FE8C76200A18E95 /* WeChatManager.m in Sources */,
 				798E091B1F58FC3E005C1F2B /* NewfeatureViewController.m in Sources */,
 				798E09B31F58FC4E005C1F2B /* IQUIView+Hierarchy.m in Sources */,
 				79D4C8E01F6649050012549F /* WareChooseNumVc.m in Sources */,
@@ -1576,7 +1588,6 @@
 				798E09B01F58FC4E005C1F2B /* IQTextView.m in Sources */,
 				798E09E71F5911ED005C1F2B /* HomePageVC.m in Sources */,
 				798E09191F58FC3E005C1F2B /* MainNavViewController.m in Sources */,
-				797D23C81F70CCF300AFAFEC /* SaveUserInfoTool.m in Sources */,
 				798E08A21F58FC2C005C1F2B /* NearbyNetworkView.m in Sources */,
 				798E08A91F58FC2C005C1F2B /* Reachability.m in Sources */,
 				79D4C8E91F6686BA0012549F /* CustomChoosePhotoV.m in Sources */,
@@ -1608,6 +1619,7 @@
 				798E09251F58FC3E005C1F2B /* GCDAfterDone.m in Sources */,
 				79BF718A1F75064A0039309D /* BaseModelInfo.m in Sources */,
 				29112E301FCD367000C70BC2 /* CustomProtrlView.m in Sources */,
+				29829B481FEA526900B2310B /* LoggingWithDataTool.m in Sources */,
 				799243BB1F5D38EC0021CE90 /* AssociatPhoneVC.m in Sources */,
 				798E092B1F58FC3E005C1F2B /* YQItemTool.m in Sources */,
 				798E09AE1F58FC4E005C1F2B /* IQNSArray+Sort.m in Sources */,
@@ -1841,7 +1853,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = N7B8L3Y747;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1868,7 +1880,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = N7B8L3Y747;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

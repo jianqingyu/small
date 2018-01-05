@@ -59,13 +59,13 @@
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GFa-Ku-dTM">
-                    <rect key="frame" x="33" y="190" width="254" height="35"/>
+                    <rect key="frame" x="33" y="195" width="254" height="35"/>
                     <color key="backgroundColor" red="0.95686274510000002" green="0.5450980392" blue="0.1450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="35" id="en6-rr-Uyw"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <state key="normal" title="下一步"/>
+                    <state key="normal" title="注册"/>
                     <connections>
                         <action selector="nextClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="tFy-ir-IbB"/>
                     </connections>
@@ -84,10 +84,10 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9mm-ah-1Nz">
-                    <rect key="frame" x="33" y="159" width="11" height="11"/>
+                    <rect key="frame" x="33" y="159" width="16" height="16"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="11" id="hmp-ud-gdG"/>
-                        <constraint firstAttribute="height" constant="11" id="uC7-7U-QwL"/>
+                        <constraint firstAttribute="width" constant="16" id="hmp-ud-gdG"/>
+                        <constraint firstAttribute="height" constant="16" id="uC7-7U-QwL"/>
                     </constraints>
                     <state key="normal" backgroundImage="icon_sel"/>
                     <state key="selected" image="icon_sel2"/>
@@ -96,13 +96,13 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="同意" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eZV-eo-1DM">
-                    <rect key="frame" x="46" y="157" width="25" height="15"/>
+                    <rect key="frame" x="51" y="159.5" width="25" height="15"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0H3-TP-hMA">
-                    <rect key="frame" x="73" y="151" width="74" height="27"/>
+                    <rect key="frame" x="78" y="153.5" width="74" height="27"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <state key="normal" title="用户注册协议">
                         <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -112,13 +112,13 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="及" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3S7-Gj-yn5">
-                    <rect key="frame" x="149" y="157" width="12" height="15"/>
+                    <rect key="frame" x="154" y="159.5" width="12" height="15"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6GR-7N-AR9">
-                    <rect key="frame" x="163" y="151" width="74" height="27"/>
+                    <rect key="frame" x="168" y="153.5" width="74" height="27"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <state key="normal" title="仓储管理协议">
                         <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -149,7 +149,7 @@
                                 <constraint firstAttribute="height" constant="20" id="fap-kS-Be6"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <textInputTraits key="textInputTraits" keyboardType="numberPad" secureTextEntry="YES"/>
+                            <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                         </textField>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -209,9 +209,10 @@
                 <outlet property="getCodeBtn" destination="vhZ-FC-gcn" id="5HR-tJ-C3L"/>
                 <outlet property="nextBtn" destination="GFa-Ku-dTM" id="ctW-Ir-BgG"/>
                 <outlet property="passFie" destination="KxL-OG-p4q" id="9UN-06-inH"/>
+                <outlet property="passView" destination="F3a-K7-9K6" id="UFL-Uy-Hv0"/>
                 <outlet property="phoneFie" destination="TTS-CL-cax" id="JEJ-EM-02B"/>
             </connections>
-            <point key="canvasLocation" x="39" y="98"/>
+            <point key="canvasLocation" x="-175" y="86"/>
         </view>
     </objects>
     <resources>

@@ -18,6 +18,8 @@
 #import "ShopShareCustomView.h"
 #import "HomeShoppingDetailVc.h"
 #import "ShoppingListInfo.h"
+#import "ChooseStoreInfoTool.h"
+#import "LoggingWithDataTool.h"
 @interface HomePageVC ()<UITableViewDelegate,UITableViewDataSource,
 UINavigationControllerDelegate>{
     int pageCount;
@@ -47,11 +49,12 @@ UINavigationControllerDelegate>{
     self.twoData = @[].mutableCopy;
     self.height = 190;
     [self creatBaseView];
-    if ([AccountTool account].isLog) {
-        [self loginUser];
-    }else{
+    //是否登录过
+    if ([SaveUserInfoTool shared].haveLog) {
         [self setBaseTableAndNet];
+        return;
     }
+    [self loginUserInfo];
 }
 
 - (void)setBaseTableAndNet{
@@ -61,34 +64,87 @@ UINavigationControllerDelegate>{
 //    [self loadMessage];
 }
 
-- (void)loginUser{
+- (void)loginUserInfo{
+    int type = [[AccountTool account].isLog intValue];
+    switch (type) {
+        case 0:
+            [self setBaseTableAndNet];
+            break;
+        case 1:
+            [self loginByPhone];
+            break;
+        case 2:
+            [self loginByWeiXin];
+            break;
+        case 3:
+            [self loginByQQ];
+            break;
+        default:
+            break;
+    }
+}
+
+- (void)loginByPhone{
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"loginName"] = [AccountTool account].loginName;
     params[@"password"] = [AccountTool account].password;
+    NSMutableDictionary *dic = @{}.mutableCopy;
+    dic[@"isLog"] = @1;
     NSString *logUrl = [NSString stringWithFormat:@"%@api/user/login",baseNet];
-//    dispatch_async(dispatch_get_global_queue(0, 0), ^{
-//        // 处理耗时操作的代码块...
-//    });
-    [BaseApi postGeneralData:^(BaseResponse *response, NSError *error) {
-        if ([response.code isEqualToString:@"0000"]&&[YQObjectBool boolForObject:response.result]) {
-            params[@"mobile"] = response.result[@"mobile"];
-            params[@"isLog"] = @YES;
-            Account *account = [Account accountWithDict:params];
-            [AccountTool saveAccount:account];
-            SaveUserInfoTool *save = [SaveUserInfoTool shared];
-            save.id = response.result[@"id"];
-            save.nickName = response.result[@"nickName"];
-            save.shopId = response.result[@"shopId"];
-            save.imgUrl = response.result[@"imgUrl"];
-            //通知主线程刷新
+    [LoggingWithDataTool logData:params andUrl:logUrl andSaveDic:dic andBack:^(int type) {
+        if (type==1) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self setBaseTableAndNet];
             });
-        }else{
-            NSString *str = response.msg?response.msg:@"登录失败";
-            [MBProgressHUD showError:str];
         }
-    } requestURL:logUrl params:params];
+    }];
+}
+
+- (void)loginByWeiXin{
+    NSString *refesh = [AccountTool account].refeshKey;
+    NSString *userUrl = @"https://api.weixin.qq.com/sns/oauth2/refresh_token";
+    NSMutableDictionary *params = @{}.mutableCopy;
+    params[@"appid"] = @"wxce488c9ce08c20e3";
+    params[@"grant_type"] = @"refresh_token";
+    params[@"refresh_token"] = refesh;
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/plain",nil];
+    [manager GET:userUrl parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if (responseObject[@"access_token"]) {
+            params[@"isLog"] = @2;
+            params[@"refeshKey"] = refesh;
+            NSString *logUrl = [NSString stringWithFormat:@"%@api/user/wx/auth",baseNet];
+            NSMutableDictionary *dic = @{}.mutableCopy;
+            dic[@"access_token"] = responseObject[@"access_token"];
+            dic[@"openid"] = responseObject[@"openid"];
+            [LoggingWithDataTool logData:dic andUrl:logUrl andSaveDic:params andBack:^(int type) {
+                if (type==1) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self setBaseTableAndNet];
+                    });
+                }
+            }];
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"用refresh_token来更新accessToken时出错 = %@", error);
+    }];
+}
+
+- (void)loginByQQ{
+    NSString *refesh = [AccountTool account].refeshKey;
+    NSMutableDictionary *params = @{}.mutableCopy;
+    params[@"access_token"] = refesh;
+    NSMutableDictionary *dic = @{}.mutableCopy;
+    dic[@"isLog"] = @3;
+    dic[@"refeshKey"] = refesh;
+    NSString *logUrl = [NSString stringWithFormat:@"%@api/user/qq/auth",baseNet];
+    [LoggingWithDataTool logData:params andUrl:logUrl andSaveDic:dic andBack:^(int type) {
+        if (type==1) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self setBaseTableAndNet];
+            });
+        }
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -218,6 +274,9 @@ UINavigationControllerDelegate>{
                     self.headView.messDic = arr[0];
                 }
             }
+        }
+        if ([SaveUserInfoTool shared].haveLog) {
+            [ChooseStoreInfoTool chooseInfo:4];
         }
     } requestURL:url params:params];
 }

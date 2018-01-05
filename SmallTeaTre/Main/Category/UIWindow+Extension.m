@@ -32,13 +32,6 @@
         [[NSUserDefaults standardUserDefaults]synchronize];
     }
 //    if ([currentVersion isEqualToString:lastVersion]) {
-//        self.rootViewController = [[LoginViewController alloc]init];
-//    }else{
-//        self.rootViewController = [[NewfeatureViewController alloc]init];
-//        //将当前版本存入
-//        [[NSUserDefaults standardUserDefaults]setObject:currentVersion forKey:key];
-//        [[NSUserDefaults standardUserDefaults]synchronize];
-//    }
 }
 
 @end

@@ -39,7 +39,6 @@
 
 - (void)addClick{
     [ChooseStoreInfoTool chooseInfo:2];
-    
 }
 
 #pragma mark UI初始化

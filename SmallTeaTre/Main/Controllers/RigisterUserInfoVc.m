@@ -144,7 +144,7 @@
 }
 
 - (void)saveUserInfo:(NSMutableDictionary *)params and:(BaseResponse *)response{
-    params[@"isLog"] = @YES;
+    params[@"isLog"] = @1;
     Account *account = [Account accountWithDict:params];
     //自定义类型存储用NSKeyedArchiver
     [AccountTool saveAccount:account];

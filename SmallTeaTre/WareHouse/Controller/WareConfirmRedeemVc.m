@@ -94,11 +94,6 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"id"] = _info.id;
     NSString *netUrl = [NSString stringWithFormat:@"%@%@",baseNet,url];
-//    if (_info.transStatus==3) {
-//        [BaseApi postJsonData:^(BaseResponse *response, NSError *error) {
-//            [self changeBackWith:response];
-//        } requestURL:netUrl params:params];
-//    }else{
     [BaseApi postGeneralData:^(BaseResponse *response, NSError *error) {
         [self changeBackWith:response];
     } requestURL:netUrl params:params];

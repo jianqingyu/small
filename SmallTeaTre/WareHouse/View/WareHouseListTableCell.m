@@ -17,6 +17,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *numLab;
 @property (weak, nonatomic) IBOutlet UILabel *dateLab;
 @property (weak, nonatomic) IBOutlet UIButton *styBtn;
+@property (weak, nonatomic) IBOutlet UIView *wuliuView;
+@property (weak, nonatomic) IBOutlet UILabel *comLab;
+@property (weak, nonatomic) IBOutlet UILabel *orderNumLab;
 @end
 @implementation WareHouseListTableCell
 
@@ -50,7 +53,11 @@
         [self.styBtn setTitle:_listInfo.transStatusName forState:UIControlStateNormal];
         self.sPriceLab.text = [NSString stringWithFormat:@"茶叶单价:%0.2f/%@",_listInfo.price,_listInfo.unitName];
         self.numLab.text = [NSString stringWithFormat:@"成交总量:%@%@",_listInfo.quantity,_listInfo.unitName];
-        self.allPriceLab.text = [NSString stringWithFormat:@"成交总金额:%0.2f元",_listInfo.total];
+        if ([YQObjectBool boolForObject:_listInfo.endTime]) {
+            self.allPriceLab.text = [NSString stringWithFormat:@"暂存时间:%@",_listInfo.endTime];
+        }else{
+            self.allPriceLab.text = [NSString stringWithFormat:@"成交总金额:%0.2f元",_listInfo.total];
+        }
         NSString *string = [OrderNumTool strWithTime:_listInfo.createTime];
         self.dateLab.text = [NSString stringWithFormat:@"购买日期:%@",string];
     }
@@ -63,12 +70,20 @@
         [self.teaImg sd_setImageWithURL:[NSURL URLWithString:url]
                        placeholderImage:DefaultImage];
         self.wareTLab.text = _orderInfo.goodsName;
-//        self.wareSta.text = [NSString stringWithFormat:@"%@ %@",_orderInfo.deportName,_orderInfo.typeName];
-        self.wareSta.text = _orderInfo.typeName;
+        self.wareSta.text = @"";
+        if (_orderInfo.logistics.length>0) {
+            self.wuliuView.hidden = NO;
+            self.comLab.text = [NSString stringWithFormat:@"物流公司:%@",_orderInfo.logistics];
+            self.orderNumLab.text = [NSString stringWithFormat:@"订单号:%@",_orderInfo.logisticsNumber];
+        }
         [self.styBtn setTitle:_orderInfo.orderTypeName forState:UIControlStateNormal];
         self.sPriceLab.text = [NSString stringWithFormat:@"茶叶单价:%0.2f/%@",_orderInfo.price,_orderInfo.unitName];
         self.numLab.text = [NSString stringWithFormat:@"成交总量:%@%@",_orderInfo.quantity,_orderInfo.unitName];
-        self.allPriceLab.text = [NSString stringWithFormat:@"成交总金额:%0.2f元",_orderInfo.total];
+        if ([YQObjectBool boolForObject:_orderInfo.endTime]) {
+            self.allPriceLab.text = [NSString stringWithFormat:@"暂存时间:%@",_orderInfo.endTime];
+        }else{
+            self.allPriceLab.text = [NSString stringWithFormat:@"成交总金额:%0.2f元",_orderInfo.total];
+        }
         NSString *string = [OrderNumTool strWithTime:_orderInfo.createTime];
         self.dateLab.text = [NSString stringWithFormat:@"购买日期:%@",string];
     }

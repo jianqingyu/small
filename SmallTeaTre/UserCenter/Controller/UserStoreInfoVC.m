@@ -55,6 +55,9 @@
 }
 
 - (IBAction)telClick:(id)sender {
+    if (self.phone.length==0) {
+        return;
+    }
     NSURL* url = [[NSURL alloc] initWithString:[NSString stringWithFormat:@"tel:%@",_phone]];
     [[UIApplication sharedApplication]openURL:url];
 }

@@ -23,6 +23,8 @@
 
 - (void)creatRegisterView{
     CustomRegisterV *regisV = [CustomRegisterV createRegisterView];
+    SaveUserInfoTool *save = [SaveUserInfoTool shared];
+    regisV.logType = save.isQQ?3:2;
     [self.view addSubview:regisV];
     [regisV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view).offset(0);

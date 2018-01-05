@@ -9,5 +9,5 @@
 #import "BaseViewController.h"
 
 @interface TemporaryDepVC : BaseViewController
-
+@property (nonatomic,assign)BOOL isAdd;
 @end

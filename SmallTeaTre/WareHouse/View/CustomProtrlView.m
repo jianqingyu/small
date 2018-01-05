@@ -30,13 +30,21 @@
     return self;
 }
 
+- (void)setTitleStr:(NSString *)titleStr{
+    if (titleStr) {
+        _titleStr = titleStr;
+        self.titleLab.text = _titleStr;
+    }
+}
+
 - (void)setStr:(NSString *)str{
     if (str) {
         _str = str;
-        NSAttributedString *attributedString = [[NSAttributedString alloc]initWithData:
-                                                [_str dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType}
-                                                                    documentAttributes:nil error:nil];
-        self.textView.attributedText = attributedString;
+        NSDictionary *dic = @{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType};
+        NSAttributedString *attStr = [[NSAttributedString alloc]initWithData:
+        [_str dataUsingEncoding:NSUnicodeStringEncoding] options:dic
+                                            documentAttributes:nil error:nil];
+        self.textView.attributedText = attStr;
     }
 }
 

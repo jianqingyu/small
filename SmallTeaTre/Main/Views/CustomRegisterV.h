@@ -11,4 +11,5 @@ typedef void (^CusRegBack)(int staue);
 @interface CustomRegisterV : UIView
 + (CustomRegisterV *)createRegisterView;
 @property (nonatomic, copy)CusRegBack back;
+@property (nonatomic,assign)int logType;
 @end

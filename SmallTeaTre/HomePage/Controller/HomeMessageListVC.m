@@ -23,7 +23,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"公告管理";
     [self setupTableView];
     [self setupHeaderRefresh];
 }
@@ -88,23 +87,47 @@
 - (void)getCommodityData{
     [SVProgressHUD show];
     self.view.userInteractionEnabled = NO;
-    NSString *url = [NSString stringWithFormat:@"%@api/notice/page",baseNet];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"index"] = @(curPage);
     params[@"pageSize"] = @(pageCount);
-    [BaseApi postJsonData:^(BaseResponse *response, NSError *error) {
-        [_mTableView.header endRefreshing];
-        [_mTableView.footer endRefreshing];
-        if ([response.code isEqualToString:@"0000"]) {
-            [self setupFootRefresh];
-            if ([YQObjectBool boolForObject:response.result]){
-                [self setupListDataWithDict:response.result];
+    NSString *str = @"api/notice/page";
+    if (self.isMes) {
+        str = @"api/msg/zc";
+        params[@"userId"] = [SaveUserInfoTool shared].id;
+    }
+    NSString *url = [NSString stringWithFormat:@"%@%@",baseNet,str];
+    if (self.isMes) {
+        [BaseApi getGeneralData:^(BaseResponse *response, NSError *error) {
+            [_mTableView.header endRefreshing];
+            [_mTableView.footer endRefreshing];
+            if ([response.code isEqualToString:@"0000"]) {
+                [self setupFootRefresh];
+                if ([YQObjectBool boolForObject:response.result]){
+                    [self setupListDataWithDict:response.result];
+                }
+                [_mTableView reloadData];
+                self.view.userInteractionEnabled = YES;
+                NSString *number = response.result[@"totalRows"];
+                [[NSUserDefaults standardUserDefaults]setObject:number forKey:@"messCount"];
+                [[NSUserDefaults standardUserDefaults]synchronize];
+                [SVProgressHUD dismiss];
             }
-            [_mTableView reloadData];
-            self.view.userInteractionEnabled = YES;
-            [SVProgressHUD dismiss];
-        }
-    } requestURL:url params:params];
+        } requestURL:url params:params];
+    }else{
+        [BaseApi postJsonData:^(BaseResponse *response, NSError *error) {
+            [_mTableView.header endRefreshing];
+            [_mTableView.footer endRefreshing];
+            if ([response.code isEqualToString:@"0000"]) {
+                [self setupFootRefresh];
+                if ([YQObjectBool boolForObject:response.result]){
+                    [self setupListDataWithDict:response.result];
+                }
+                [_mTableView reloadData];
+                self.view.userInteractionEnabled = YES;
+                [SVProgressHUD dismiss];
+            }
+        } requestURL:url params:params];
+    }
 }
 
 - (void)setupListDataWithDict:(NSDictionary *)dict{
@@ -124,7 +147,7 @@
     }else{
         //[_mTableView.header removeFromSuperview];
         MJRefreshAutoNormalFooter*footer = (MJRefreshAutoNormalFooter*)_mTableView.footer;
-        [footer setTitle:@"暂时没有商品" forState:MJRefreshStateNoMoreData];
+        [footer setTitle:@"暂时没有信息" forState:MJRefreshStateNoMoreData];
         _mTableView.footer.state = MJRefreshStateNoMoreData;
     }
 }

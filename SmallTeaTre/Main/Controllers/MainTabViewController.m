@@ -12,6 +12,8 @@
 #import "WareHouseVC.h"
 #import "LoginViewController.h"
 #import "ShoppingMallVC.h"
+#import "TemporaryDepVC.h"
+#import "ShowLoginViewTool.h"
 #import "NetworkDetermineTool.h"
 #import "UserCenterViewController.h"
 @interface MainTabViewController ()<UITabBarControllerDelegate>

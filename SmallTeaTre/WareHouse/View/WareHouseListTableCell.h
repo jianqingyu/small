@@ -12,7 +12,8 @@
 typedef void (^WareListBack)(BOOL isSel);
 @interface WareHouseListTableCell : UITableViewCell
 + (id)cellWithTableView:(UITableView *)tableView;
-@property (nonatomic, copy)WareListBack reBack;
+@property (nonatomic,  copy)WareListBack reBack;
 @property (nonatomic,strong)WareListInfo *listInfo;
 @property (nonatomic,strong)UserOrderListInfo *orderInfo;
+
 @end

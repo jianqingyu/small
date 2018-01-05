@@ -118,6 +118,26 @@
     if (self.userHV) {
         [self.userHV setUserInfo];
     }
+    [self loadMessCountData];
+}
+
+- (void)loadMessCountData{
+    NSString *str = @"api/msg/zc";
+    NSString *url = [NSString stringWithFormat:@"%@%@",baseNet,str];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"index"] = @(1);
+    params[@"userId"] = [SaveUserInfoTool shared].id;
+    params[@"pageSize"] = @(10);
+    [BaseApi getGeneralData:^(BaseResponse *response, NSError *error) {
+        if ([response.code isEqualToString:@"0000"]) {
+            int number = [response.result[@"totalRows"]intValue];
+            NSString *messCount = [[NSUserDefaults standardUserDefaults]objectForKey:@"messCount"];
+            BOOL isNew = number>[messCount intValue];
+            if (self.userHV) {
+                [self.userHV changeBtnNew:isNew];
+            }
+        }
+    } requestURL:url params:params];
 }
 
 - (void)navigationController:(UINavigationController *)navigationController
@@ -193,6 +213,7 @@
             params[@"loginName"] = [AccountTool account].loginName;
             params[@"password"] = [AccountTool account].password;
             params[@"mobile"] = [AccountTool account].mobile;
+            params[@"isLog"] = @0;
             Account *account = [Account accountWithDict:params];
             [AccountTool saveAccount:account];
             SaveUserInfoTool *save = [SaveUserInfoTool shared];

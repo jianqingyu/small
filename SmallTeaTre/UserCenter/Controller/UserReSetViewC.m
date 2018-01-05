@@ -116,9 +116,14 @@
 }
 
 - (void)setBaseView:(NSDictionary *)dic{
-    NSString *url = [NSString stringWithFormat:@"%@%@",baseNet,dic[@"imgUrl"]];
-    [self.headView sd_setImageWithURL:[NSURL URLWithString:url]
-                   placeholderImage:DefaultHead];
+    NSString *url = [SaveUserInfoTool shared].imgUrl;
+    if ([YQObjectBool boolForObject:url]) {
+        if (![url containsString:@"http"]) {
+            url = [NSString stringWithFormat:@"%@%@",baseNet,url];
+        }
+        [self.headView sd_setImageWithURL:[NSURL URLWithString:url]
+                         placeholderImage:DefaultHead];
+    }
     self.phoneLab.text = dic[@"mobile"];
     self.nameLab.text = dic[@"nickName"];
 }

@@ -95,6 +95,7 @@
     }
     UIViewController *vc = [ShowLoginViewTool getCurrentVC];
     HomeMessageListVC *listVc = [HomeMessageListVC new];
+    listVc.title = @"公告管理";
     [vc.navigationController pushViewController:listVc animated:YES];
 }
 

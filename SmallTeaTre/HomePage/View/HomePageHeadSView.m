@@ -29,7 +29,7 @@
 }
 
 - (IBAction)saveTea:(id)sender {
-    [ChooseStoreInfoTool chooseInfo:1];
+    [ChooseStoreInfoTool chooseInfo:5];
 }
 
 - (IBAction)changeTea:(id)sender {
@@ -51,16 +51,5 @@
         }
     } requestURL:netUrl params:params];
 }
-
-//- (void)pushToWareHouse{
-//    NSString *shopId = [SaveUserInfoTool shared].shopId;
-//    if (shopId.length==0) {
-//        [ChooseStoreInfoTool chooseInfo];
-//    }else{
-//        AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-//        MainTabViewController *tab = (MainTabViewController *)delegate.window.rootViewController;
-//        tab.selectedIndex = 2;
-//    }
-//}
 
 @end

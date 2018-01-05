@@ -269,10 +269,10 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="71b-Yg-ZLt">
-                    <rect key="frame" x="47" y="380" width="280" height="33"/>
+                    <rect key="frame" x="47" y="380" width="280" height="35"/>
                     <color key="backgroundColor" red="0.95686274509803915" green="0.54509803921568623" blue="0.14509803921568626" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="33" id="haa-6U-zdD"/>
+                        <constraint firstAttribute="height" constant="35" id="haa-6U-zdD"/>
                         <constraint firstAttribute="width" constant="280" id="zip-sB-yVe"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>

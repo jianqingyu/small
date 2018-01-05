@@ -64,8 +64,11 @@
         [MBProgressHUD showError:@"请选择时间"];
         return;
     }
+    if (![self compareStr:_info.endTime withStr:self.dateLab.text]) {
+        [MBProgressHUD showError:@"续存时间有误"];
+        return;
+    }
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    //    params[@"goodsId"] = _info.goodsId;
     params[@"date"] = self.dateLab.text;
     params[@"id"] = _info.id;
     NSString *netUrl = [NSString stringWithFormat:@"%@api/store/xc/apply",baseNet];
@@ -84,6 +87,23 @@
         NSString *str = [YQObjectBool boolForObject:response.msg]?response.msg:@"操作失败";
         [MBProgressHUD showError:str];
     } requestURL:netUrl params:params];
+}
+
+- (BOOL)compareStr:(NSString *)oneStr withStr:(NSString *)anStr
+{
+    NSDateFormatter *df = [[NSDateFormatter alloc]init];
+    [df setDateFormat:@"yyyy-MM-dd"];
+    NSDate *dateA = [[NSDate alloc]init];
+    NSDate *dateB = [[NSDate alloc]init];
+    dateA = [df dateFromString:oneStr];
+    dateB = [df dateFromString:anStr];
+    NSComparisonResult result = [dateA compare:dateB];
+    if (result == NSOrderedAscending){  // oneDateStr < anotherDateStr
+        return YES;
+    }else if (result == NSOrderedDescending){  // oneDateStr > anotherDateStr
+        return NO;
+    }
+    return NO;
 }
 
 - (void)didReceiveMemoryWarning {

@@ -25,6 +25,8 @@
 @property (nonatomic, copy)NSString *updateTime;
 @property (nonatomic, copy)NSString *endTime;
 @property (nonatomic, copy)NSString *quantity;
+@property (nonatomic, copy)NSString *logistics;
+@property (nonatomic, copy)NSString *logisticsNumber;
 @property (nonatomic,assign)float price;
 @property (nonatomic,assign)float total;
 

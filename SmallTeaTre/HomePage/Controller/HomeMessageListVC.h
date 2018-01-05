@@ -9,5 +9,5 @@
 #import "BaseViewController.h"
 
 @interface HomeMessageListVC : BaseViewController
-
+@property (nonatomic,assign)BOOL isMes;
 @end

@@ -1,8 +1,12 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1611" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -13,31 +17,40 @@
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_back_cen" translatesAutoresizingMaskIntoConstraints="NO" id="oHK-jS-bds">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="227"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="个人中心" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6n3-bs-wee">
-                    <rect key="frame" x="130" y="35" width="60" height="18"/>
+                    <rect key="frame" x="129.5" y="30" width="61.5" height="18"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_toux" translatesAutoresizingMaskIntoConstraints="NO" id="1NF-Fh-aRW">
-                    <rect key="frame" x="115" y="73" width="90" height="90"/>
+                    <rect key="frame" x="115" y="68" width="90" height="90"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="90" id="o48-Fg-zw8"/>
                         <constraint firstAttribute="height" constant="90" id="teh-HJ-1eh"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="中吉号小茶宝" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ndo-B3-Gn3">
-                    <rect key="frame" x="115" y="183" width="90" height="18"/>
+                    <rect key="frame" x="114" y="178" width="92" height="18"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y1Z-dp-lHz">
+                    <rect key="frame" x="290" y="30" width="18" height="22"/>
+                    <state key="normal" image="icon_noti"/>
+                    <connections>
+                        <action selector="notiClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="p1U-Fo-tI6"/>
+                    </connections>
+                </button>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="6n3-bs-wee" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="35" id="CpY-xt-wzw"/>
+                <constraint firstItem="Y1Z-dp-lHz" firstAttribute="top" secondItem="6n3-bs-wee" secondAttribute="top" id="Avk-M7-hwA"/>
+                <constraint firstItem="6n3-bs-wee" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="30" id="CpY-xt-wzw"/>
+                <constraint firstAttribute="trailing" secondItem="Y1Z-dp-lHz" secondAttribute="trailing" constant="12" id="DmP-E6-hnn"/>
                 <constraint firstItem="6n3-bs-wee" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Ldq-hb-ETr"/>
                 <constraint firstItem="ndo-B3-Gn3" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Rdd-VQ-US3"/>
                 <constraint firstAttribute="bottom" secondItem="oHK-jS-bds" secondAttribute="bottom" id="aZ0-7c-xHH"/>
@@ -51,13 +64,15 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="headView" destination="1NF-Fh-aRW" id="fo9-N4-GhY"/>
+                <outlet property="messBtn" destination="Y1Z-dp-lHz" id="WVb-81-o74"/>
                 <outlet property="nickname" destination="ndo-B3-Gn3" id="bYV-s8-ipb"/>
             </connections>
-            <point key="canvasLocation" x="533" y="333.5"/>
+            <point key="canvasLocation" x="310" y="272"/>
         </view>
     </objects>
     <resources>
         <image name="icon_back_cen" width="375" height="266"/>
+        <image name="icon_noti" width="18" height="18"/>
         <image name="icon_toux" width="91" height="91"/>
     </resources>
 </document>

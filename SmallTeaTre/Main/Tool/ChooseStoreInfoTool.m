@@ -70,6 +70,21 @@
             }
         }
             break;
+        case 4:{//停留在主页
+            [vc.navigationController popViewControllerAnimated:YES];
+        }
+            break;
+        case 5:{//切换tab 并且跳转到添加
+            TemporaryDepVC *depVc = [TemporaryDepVC new];
+            depVc.isAdd = YES;
+            [vc.navigationController pushViewController:depVc animated:YES];
+            if (isYes) {
+                NSMutableArray *navigationArray = [[NSMutableArray alloc] initWithArray: vc.navigationController.viewControllers];
+                [navigationArray removeObjectAtIndex:navigationArray.count-2];
+                vc.navigationController.viewControllers = navigationArray;
+            }
+        }
+            break;
         default:
             break;
     }

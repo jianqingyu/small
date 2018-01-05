@@ -22,10 +22,13 @@
 
 - (void)clearAllData{
     self.id = @"";
+    self.haveLog = NO;
+    self.isQQ = NO;
     self.mobile = @"";
     self.nickName = @"";
     self.shopId = @"";
     self.imgUrl = @"";
+    self.openId = @"";
 }
 
 @end

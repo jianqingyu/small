@@ -39,9 +39,24 @@
     [self.nextBtn setLayerWithW:3 andColor:BordColor andBackW:0.0001];
     [self loadMainProView];
 }
+#pragma mark -- 网络请求
+- (void)loadProData{
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    NSString *netUrl = [NSString stringWithFormat:@"%@api/help/type/0004",baseNet];
+    [BaseApi getGeneralData:^(BaseResponse *response, NSError *error) {
+        if ([response.code isEqualToString:@"0000"]&&[YQObjectBool boolForObject:response.result]) {
+            NSDictionary *dic = response.result[0];
+            self.proView.str = dic[@"content"];
+        }else{
+            NSString *str = response.msg?response.msg:@"查询失败";
+            [MBProgressHUD showError:str];
+        }
+    } requestURL:netUrl params:params];
+}
 #pragma mark -- 弹出协议
 - (void)loadMainProView{
     CustomProtrlView *pView = [CustomProtrlView creatCustomView];
+    pView.titleStr = @"转让协议";
     [self.view addSubview:pView];
     [pView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view).offset(0);
@@ -78,7 +93,7 @@
     [self.bPriceFie resignFirstResponder];
     self.proView.hidden = NO;
 }
-//申请质押
+//申请转让
 - (void)applyStoreZr{
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"expectation"] = [NSString stringWithFormat:@"%@~%@",self.sPriceFie.text,self.bPriceFie.text];

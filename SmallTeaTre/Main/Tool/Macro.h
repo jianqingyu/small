@@ -56,7 +56,7 @@
 #define BarColor CUSTOM_COLOR(245,245,247)
 #define BordColor CUSTOM_COLOR(218,218,218)
 //基础接口
-//#define baseNet @"http://119.23.209.140:82/xcb/"
+//#define baseNet @"http://119.23.209.140:83/xcb/"
 //网络接口
 #define baseNet @"http://119.23.209.140:81/xcb/"
 //支付宝支付网址
@@ -77,7 +77,9 @@
 /**信息条数通知*/
 #define NotificationList @"NotificationList"
 #define ListNum @"UserinfoList"
-
+/**tab页切换通知*/
+#define NotificationTabD @"NotificationTabDid"
+#define TabDid @"UserinfoDid"
 //默认图片
 #define DefaultHead [UIImage imageNamed:@"icon_toux"]
 #define DefaultImage [UIImage imageNamed:@"shop_loading"]

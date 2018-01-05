@@ -20,6 +20,7 @@
         self.password  = dict[@"password"];
         self.mobile    = dict[@"mobile"];
         self.isLog     = dict[@"isLog"];
+        self.refeshKey = dict[@"refeshKey"];
     }
     return self;
 }
@@ -31,6 +32,7 @@
     [aCoder encodeObject:self.password  forKey:@"password"];
     [aCoder encodeObject:self.mobile    forKey:@"mobile"];
     [aCoder encodeObject:self.isLog     forKey:@"isLog"];
+    [aCoder encodeObject:self.refeshKey forKey:@"refeshKey"];
 }
 /**
  *当从沙盒中解当时，就会调用这个方法
@@ -41,6 +43,7 @@
         self.password  = [aDecoder decodeObjectForKey:@"password"];
         self.mobile    = [aDecoder decodeObjectForKey:@"mobile"];
         self.isLog     = [aDecoder decodeObjectForKey:@"isLog"];
+        self.refeshKey = [aDecoder decodeObjectForKey:@"refeshKey"];
     }
     return self;
 }
