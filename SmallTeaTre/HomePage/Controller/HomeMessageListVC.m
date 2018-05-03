@@ -110,7 +110,6 @@
                 NSString *number = response.result[@"totalRows"];
                 [[NSUserDefaults standardUserDefaults]setObject:number forKey:@"messCount"];
                 [[NSUserDefaults standardUserDefaults]synchronize];
-                [SVProgressHUD dismiss];
             }
         } requestURL:url params:params];
     }else{
@@ -124,7 +123,9 @@
                 }
                 [_mTableView reloadData];
                 self.view.userInteractionEnabled = YES;
-                [SVProgressHUD dismiss];
+                NSString *number = response.result[@"totalRows"];
+                [[NSUserDefaults standardUserDefaults]setObject:number forKey:@"homeMessCount"];
+                [[NSUserDefaults standardUserDefaults]synchronize];
             }
         } requestURL:url params:params];
     }

@@ -15,12 +15,15 @@
 #import "MainTabViewController.h"
 @interface CustomRegisterV()
 @property (weak, nonatomic) IBOutlet UITextField *phoneFie;
+@property (weak, nonatomic) IBOutlet UITextField *numCode;
 @property (weak, nonatomic) IBOutlet UITextField *codeFie;
 @property (weak, nonatomic) IBOutlet ZBButten *getCodeBtn;
 @property (weak, nonatomic) IBOutlet UIButton *nextBtn;
 @property (weak, nonatomic) IBOutlet UITextField *passFie;
 @property (weak, nonatomic) IBOutlet UIView *passView;
+@property (weak, nonatomic) IBOutlet UIImageView *codeImage;
 @property (nonatomic, copy) NSString *biz;
+@property (nonatomic, copy) NSString *uuidStr;
 @property (nonatomic,assign)BOOL isSel;
 @end
 @implementation CustomRegisterV
@@ -51,6 +54,18 @@
     }
 }
 
+- (IBAction)numCodeClick:(id)sender {
+    [self refreshCodeImage];
+}
+
+- (void)refreshCodeImage{
+//    arc4random()%100
+    self.uuidStr = [NSUUID UUID].UUIDString;
+    NSString *base = @"http://www.xiaochabao.top:81/xcb/api/kaptcha/kaptcha.jpg";
+    NSString *url = [NSString stringWithFormat:@"%@?uid=%@",base,self.uuidStr];
+    [self.codeImage sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:DefaultImage];
+}
+
 - (IBAction)codeClick:(UIButton *)sender {
     [self requestCheckWord];
 }
@@ -63,11 +78,14 @@
     }
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"phoneNumber"] = self.phoneFie.text;
-    NSString *logUrl = [NSString stringWithFormat:@"%@api/sms/send/register",baseNet];
+    params[@"kaptcha"] = self.numCode.text;
+    params[@"uid"] = self.uuidStr;
+    NSString *logUrl = [NSString stringWithFormat:@"%@api/sms/send",baseNet];
     [BaseApi postGeneralData:^(BaseResponse *response, NSError *error) {
         if ([YQObjectBool boolForObject:response.result]&&[response.code isEqualToString:@"0000"]) {
             self.biz = response.result[@"bizId"];
         }else{
+//            [self refreshCodeImage];
             [self.getCodeBtn resetBtn];
         }
         NSString *str = [YQObjectBool boolForObject:response.msg]?response.msg:@"操作成功";

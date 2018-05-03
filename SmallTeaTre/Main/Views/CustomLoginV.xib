@@ -36,8 +36,8 @@
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                 </textField>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="密码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ScR-6u-PmE">
-                    <rect key="frame" x="33" y="77" width="31" height="18"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="密    码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ScR-6u-PmE">
+                    <rect key="frame" x="33" y="77" width="47" height="18"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
@@ -68,10 +68,10 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a3h-kl-MBp">
-                    <rect key="frame" x="33" y="150" width="254" height="35"/>
+                    <rect key="frame" x="33" y="150" width="254" height="40"/>
                     <color key="backgroundColor" red="0.95686274510000002" green="0.5450980392" blue="0.1450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="35" id="glN-BA-lBW"/>
+                        <constraint firstAttribute="height" constant="40" id="glN-BA-lBW"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <state key="normal" title="登录"/>
@@ -80,13 +80,13 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="其他登录方式" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aHH-1H-d3C">
-                    <rect key="frame" x="114" y="215" width="92" height="18"/>
+                    <rect key="frame" x="114" y="220" width="92" height="18"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rYK-hy-KSW">
-                    <rect key="frame" x="105" y="243" width="35" height="35"/>
+                    <rect key="frame" x="105" y="248" width="35" height="35"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="35" id="bcj-TL-5vv"/>
                         <constraint firstAttribute="width" constant="35" id="d7R-QB-Y4E"/>
@@ -97,14 +97,14 @@
                     </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LaG-th-g2U">
-                    <rect key="frame" x="160" y="233" width="1" height="167"/>
+                    <rect key="frame" x="160" y="238" width="1" height="162"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="1" id="se3-RC-fZg"/>
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1T8-I1-g2h">
-                    <rect key="frame" x="181" y="243" width="35" height="35"/>
+                    <rect key="frame" x="181" y="248" width="35" height="35"/>
                     <state key="normal" image="QQ"/>
                     <connections>
                         <action selector="qqClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="aoL-Ue-NQV"/>

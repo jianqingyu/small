@@ -94,7 +94,8 @@
 
 - (void)startClick{
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    window.rootViewController = [[LoginViewController alloc]init];
+//    window.rootViewController = [[LoginViewController alloc]init];
+    window.rootViewController = [[MainTabViewController alloc]init];
 }
 
 @end

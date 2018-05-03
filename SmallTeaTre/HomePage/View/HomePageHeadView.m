@@ -14,6 +14,7 @@
 @interface HomePageHeadView()
 @property (weak, nonatomic) IBOutlet UIButton *conBtn;
 @property (weak, nonatomic) IBOutlet UILabel *messLab;
+
 @end
 @implementation HomePageHeadView
 

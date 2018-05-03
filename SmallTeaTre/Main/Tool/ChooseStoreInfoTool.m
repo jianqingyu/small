@@ -13,6 +13,7 @@
 #import "TemporaryDepVC.h"
 #import "UserStoreInfoVC.h"
 @implementation ChooseStoreInfoTool
+
 + (void)chooseInfo:(int)type{
     NSString *shopId = [SaveUserInfoTool shared].shopId;
     if (![YQObjectBool boolForObject:shopId]) {
@@ -39,7 +40,7 @@
 + (void)typePushToClass:(int)type and:(BOOL)isYes{
     UIViewController *vc = [ShowLoginViewTool getCurrentVC];
     switch (type) {
-        case 1:{//切换Tab
+        case 1:{    //切换Tab
             if (isYes) {
                 NSMutableArray *navigationArray = [[NSMutableArray alloc] initWithArray: vc.navigationController.viewControllers];
                 [navigationArray removeLastObject];
@@ -50,7 +51,7 @@
             tab.selectedIndex = 2;
         }
             break;
-        case 2:{//跳转到添加
+        case 2:{    //跳转到添加
             TemporaryDepVC *depVc = [TemporaryDepVC new];
             [vc.navigationController pushViewController:depVc animated:YES];
             if (isYes) {
@@ -60,7 +61,7 @@
             }
         }
             break;
-        case 3:{//跳转到门店
+        case 3:{    //跳转到门店
             UserStoreInfoVC *userVc = [UserStoreInfoVC new];
             [vc.navigationController pushViewController:userVc animated:YES];
             if (isYes) {
@@ -70,11 +71,11 @@
             }
         }
             break;
-        case 4:{//停留在主页
+        case 4:{    //停留在主页
             [vc.navigationController popViewControllerAnimated:YES];
         }
             break;
-        case 5:{//切换tab 并且跳转到添加
+        case 5:{    //切换tab 并且跳转到添加
             TemporaryDepVC *depVc = [TemporaryDepVC new];
             depVc.isAdd = YES;
             [vc.navigationController pushViewController:depVc animated:YES];
@@ -85,9 +86,44 @@
             }
         }
             break;
+        case 6:{    //弹出提示框
+            [vc.navigationController popViewControllerAnimated:YES];
+            if ([[SaveUserInfoTool shared].storeTel isKindOfClass:[NSString class]]) {
+                [self showAlert];
+                return;
+            }
+            NSMutableDictionary *params = [NSMutableDictionary dictionary];
+            NSString *shopId;
+            if ([[SaveUserInfoTool shared].shopId isKindOfClass:[NSString class]]) {
+                shopId = [SaveUserInfoTool shared].shopId;
+            }
+            NSString *netUrl = [NSString stringWithFormat:@"%@api/shop/%@",baseNet,shopId];
+            [BaseApi getGeneralData:^(BaseResponse *response, NSError *error) {
+                if ([response.code isEqualToString:@"0000"]&&[YQObjectBool boolForObject:response.result]) {
+                    [SaveUserInfoTool shared].storeTel = response.result[@"tel"];
+                    [self showAlert];
+                }
+            } requestURL:netUrl params:params];
+        }
+            break;
         default:
             break;
     }
+}
+
++ (void)showAlert{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSDictionary *dic = @{@"title":@"联系门店",
+                              @"message":[SaveUserInfoTool shared].storeTel,
+                              @"ok":@"立即拨打",@"cancel":@"取消"};
+        [NewUIAlertTool show:dic back:^{
+            if ([SaveUserInfoTool shared].storeTel.length==0) {
+                return;
+            }
+            NSURL* url = [[NSURL alloc] initWithString:[NSString stringWithFormat:@"tel:%@",[SaveUserInfoTool shared].storeTel]];
+            [[UIApplication sharedApplication]openURL:url];
+        }];
+    });
 }
 
 @end

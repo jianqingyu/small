@@ -1,8 +1,12 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -11,29 +15,34 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_store_info" translatesAutoresizingMaskIntoConstraints="NO" id="btw-dO-hMd">
                         <rect key="frame" x="35" y="15" width="15" height="14"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="门店信息" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rKy-nc-cWI">
-                        <rect key="frame" x="65" y="13" width="60" height="18"/>
+                        <rect key="frame" x="65" y="13" width="61.5" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <color key="textColor" red="0.15686274510000001" green="0.15686274510000001" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" red="0.15686274510000001" green="0.15686274510000001" blue="0.15686274510000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_right" translatesAutoresizingMaskIntoConstraints="NO" id="hu1-fd-R9D">
                         <rect key="frame" x="287" y="16" width="6" height="11"/>
                     </imageView>
+                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_sel-1" translatesAutoresizingMaskIntoConstraints="NO" id="sBh-4V-QLz">
+                        <rect key="frame" x="276" y="19" width="6" height="6"/>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="rKy-nc-cWI" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="214-jP-sxw"/>
                     <constraint firstItem="hu1-fd-R9D" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="4GP-8p-8m2"/>
+                    <constraint firstItem="hu1-fd-R9D" firstAttribute="leading" secondItem="sBh-4V-QLz" secondAttribute="trailing" constant="5" id="5bT-6L-4bO"/>
                     <constraint firstItem="btw-dO-hMd" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="35" id="8bH-Qf-vb0"/>
                     <constraint firstItem="rKy-nc-cWI" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="65" id="DHv-jt-AYq"/>
                     <constraint firstItem="btw-dO-hMd" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="IZh-Y1-kGw"/>
                     <constraint firstItem="rKy-nc-cWI" firstAttribute="leading" secondItem="btw-dO-hMd" secondAttribute="trailing" constant="15" id="ZWJ-Vj-0YR"/>
+                    <constraint firstItem="sBh-4V-QLz" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="vgV-ws-FIs"/>
                     <constraint firstAttribute="trailing" secondItem="hu1-fd-R9D" secondAttribute="trailing" constant="27" id="zWi-hl-4iM"/>
                 </constraints>
                 <variation key="default">
@@ -44,6 +53,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="logoImage" destination="btw-dO-hMd" id="oV7-MF-UKq"/>
+                <outlet property="logoImg" destination="sBh-4V-QLz" id="Oyg-Nc-ljn"/>
                 <outlet property="nameLab" destination="rKy-nc-cWI" id="DDc-0K-X31"/>
             </connections>
             <point key="canvasLocation" x="558" y="492"/>
@@ -51,6 +61,7 @@
     </objects>
     <resources>
         <image name="icon_right" width="6" height="11"/>
+        <image name="icon_sel-1" width="6" height="6"/>
         <image name="icon_store_info" width="15" height="14"/>
     </resources>
 </document>

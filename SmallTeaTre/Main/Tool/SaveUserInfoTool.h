@@ -14,6 +14,7 @@
 @property (nonatomic,copy)NSString *nickName;
 @property (nonatomic,copy)NSString *shopId;
 @property (nonatomic,copy)NSString *imgUrl;
+@property (nonatomic,copy)NSString *storeTel;
 @property (nonatomic,assign)BOOL isQQ;
 @property (nonatomic,copy)NSString *openId;
 @property (nonatomic,assign)BOOL haveLog;

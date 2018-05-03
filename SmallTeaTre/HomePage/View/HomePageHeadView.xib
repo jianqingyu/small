@@ -37,6 +37,9 @@
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_sel-1" translatesAutoresizingMaskIntoConstraints="NO" id="5Oq-JO-NQE">
+                            <rect key="frame" x="287" y="17" width="6" height="6"/>
+                        </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b13-Yo-ES9">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
                             <connections>
@@ -55,6 +58,7 @@
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstItem="nw6-Uj-ViV" firstAttribute="centerY" secondItem="aj0-sd-TKW" secondAttribute="centerY" id="9sN-o8-7aY"/>
+                        <constraint firstItem="5Oq-JO-NQE" firstAttribute="centerY" secondItem="aj0-sd-TKW" secondAttribute="centerY" id="BIg-dr-uvg"/>
                         <constraint firstItem="b13-Yo-ES9" firstAttribute="top" secondItem="aj0-sd-TKW" secondAttribute="top" id="FDs-Tq-2a5"/>
                         <constraint firstItem="1yR-ti-Tae" firstAttribute="centerY" secondItem="aj0-sd-TKW" secondAttribute="centerY" id="KDe-Dy-Q6D"/>
                         <constraint firstAttribute="trailing" secondItem="b13-Yo-ES9" secondAttribute="trailing" id="MWQ-Do-PTh"/>
@@ -63,6 +67,7 @@
                         <constraint firstItem="b13-Yo-ES9" firstAttribute="leading" secondItem="aj0-sd-TKW" secondAttribute="leading" id="TnV-oj-6Lj"/>
                         <constraint firstAttribute="bottom" secondItem="b13-Yo-ES9" secondAttribute="bottom" id="Wge-Ah-pQ8"/>
                         <constraint firstItem="gec-bm-cS4" firstAttribute="leading" secondItem="nw6-Uj-ViV" secondAttribute="trailing" constant="13" id="Z7C-2l-tmi"/>
+                        <constraint firstItem="1yR-ti-Tae" firstAttribute="leading" secondItem="5Oq-JO-NQE" secondAttribute="trailing" constant="5" id="aNz-ii-BDx"/>
                         <constraint firstItem="1Zr-ZO-Bet" firstAttribute="leading" secondItem="gec-bm-cS4" secondAttribute="trailing" constant="12" id="cQV-26-aXx"/>
                         <constraint firstItem="1Zr-ZO-Bet" firstAttribute="centerY" secondItem="aj0-sd-TKW" secondAttribute="centerY" id="cpO-Y6-gN4"/>
                         <constraint firstAttribute="trailing" secondItem="1yR-ti-Tae" secondAttribute="trailing" constant="16" id="kof-fR-7AG"/>
@@ -81,6 +86,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="conBtn" destination="b13-Yo-ES9" id="1VF-xV-uMb"/>
+                <outlet property="headImg" destination="5Oq-JO-NQE" id="xYC-tU-HBO"/>
                 <outlet property="messLab" destination="1Zr-ZO-Bet" id="rxi-2X-N2o"/>
             </connections>
             <point key="canvasLocation" x="468" y="181"/>
@@ -89,5 +95,6 @@
     <resources>
         <image name="icon_home_line" width="66" height="12"/>
         <image name="icon_right" width="6" height="11"/>
+        <image name="icon_sel-1" width="6" height="6"/>
     </resources>
 </document>

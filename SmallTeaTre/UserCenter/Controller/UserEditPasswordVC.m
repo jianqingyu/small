@@ -55,8 +55,10 @@
     params[@"phoneNumber"] = phone;
     NSString *logUrl = [NSString stringWithFormat:@"%@api/sms/send/password",baseNet];
     [BaseApi postGeneralData:^(BaseResponse *response, NSError *error) {
-        if ([YQObjectBool boolForObject:response.result[@"bizId"]]&&[response.code isEqualToString:@"0000"]) {
-            self.biz = response.result[@"bizId"];
+        if ([response.code isEqualToString:@"0000"]) {
+            if ([YQObjectBool boolForObject:response.result]&&[YQObjectBool boolForObject:response.result[@"bizId"]]) {
+                self.biz = response.result[@"bizId"];
+            }
         }else{
             [self.codeBtn resetBtn];
         }

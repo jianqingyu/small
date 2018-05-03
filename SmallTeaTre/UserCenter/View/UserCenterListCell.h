@@ -10,5 +10,6 @@
 
 @interface UserCenterListCell : UITableViewCell
 + (id)cellWithTableView:(UITableView *)tableView;
-@property (nonatomic, copy)NSDictionary *dic;
+@property (nonatomic,  copy)NSDictionary *dic;
+@property (nonatomic,assign)BOOL isNewVer;
 @end

@@ -10,6 +10,7 @@
 @interface UserCenterListCell()
 @property (weak, nonatomic) IBOutlet UIImageView *logoImage;
 @property (weak, nonatomic) IBOutlet UILabel *nameLab;
+@property (weak, nonatomic) IBOutlet UIImageView *logoImg;
 @end
 @implementation UserCenterListCell
 
@@ -45,6 +46,7 @@
         _dic = dic;
         self.logoImage.image = [UIImage imageNamed:_dic[@"image"]];
         self.nameLab.text = _dic[@"title"];
+        self.logoImg.hidden = !self.isNewVer;
     }
 }
 

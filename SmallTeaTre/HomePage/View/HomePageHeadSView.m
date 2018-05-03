@@ -9,6 +9,7 @@
 #import "HomePageHeadSView.h"
 #import "MainTabViewController.h"
 #import "ChooseStoreInfoTool.h"
+#import "LoginViewController.h"
 @implementation HomePageHeadSView
 + (HomePageHeadSView *)createHeadSView{
     HomePageHeadSView *headView = [[HomePageHeadSView alloc]init];
@@ -24,11 +25,20 @@
 }
 
 - (IBAction)buyTea:(id)sender {
-    NSDictionary *dic = @{@"title":@"请联系附近经销商门店"};
-    [NewUIAlertTool show:dic back:nil];
+    if (![AccountTool account].isLog) {
+        UIWindow *window = [UIApplication sharedApplication].keyWindow;
+        window.rootViewController = [[LoginViewController alloc]init];
+        return;
+    }
+    [ChooseStoreInfoTool chooseInfo:6];
 }
 
 - (IBAction)saveTea:(id)sender {
+    if (![AccountTool account].isLog) {
+        UIWindow *window = [UIApplication sharedApplication].keyWindow;
+        window.rootViewController = [[LoginViewController alloc]init];
+        return;
+    }
     [ChooseStoreInfoTool chooseInfo:5];
 }
 

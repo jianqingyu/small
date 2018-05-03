@@ -273,6 +273,12 @@ UINavigationControllerDelegate>{
                 if (arr.count>0) {
                     self.headView.messDic = arr[0];
                 }
+                int number = [response.result[@"totalRows"]intValue];
+                NSString *messCount = [[NSUserDefaults standardUserDefaults]objectForKey:@"homeMessCount"];
+                BOOL isNew = number>[messCount intValue];
+                if (self.headView) {
+                    self.headView.headImg.hidden = !isNew;
+                }
             }
         }
         if ([SaveUserInfoTool shared].haveLog) {

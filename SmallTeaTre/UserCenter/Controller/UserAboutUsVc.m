@@ -26,10 +26,6 @@
 
 - (void)loadHomeData{
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    NSString *userId;
-    if ([[SaveUserInfoTool shared].id isKindOfClass:[NSString class]]) {
-        userId = [SaveUserInfoTool shared].id;
-    }
     NSString *netUrl = [NSString stringWithFormat:@"%@api/app/info",baseNet];
     [BaseApi getGeneralData:^(BaseResponse *response, NSError *error) {
         if ([response.code isEqualToString:@"0000"]&&[YQObjectBool boolForObject:response.result]) {
@@ -47,6 +43,8 @@
     self.verLab.text = [NSString stringWithFormat:@"版本号:%@",info.app_ios_version];
     self.phone = info.customer_service_phone;
     self.telLab.text = [NSString stringWithFormat:@"客服电话:%@",info.customer_service_phone];
+    [[NSUserDefaults standardUserDefaults]setObject:info.app_ios_version forKey:@"iOSVer"];
+    [[NSUserDefaults standardUserDefaults]synchronize];
 }
 
 - (IBAction)clickTel:(id)sender {

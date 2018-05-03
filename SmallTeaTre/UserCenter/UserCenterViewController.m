@@ -18,9 +18,10 @@
 #import "ChooseStoreInfoTool.h"
 #import <ShareSDKConnector/ShareSDKConnector.h>
 @interface UserCenterViewController ()<UITableViewDelegate,UITableViewDataSource,UINavigationControllerDelegate>
-@property(strong,nonatomic) UITableView *tableView;
-@property(nonatomic,  copy) NSArray *list;
+@property(strong, nonatomic) UITableView *tableView;
+@property(nonatomic,   copy) NSArray *list;
 @property (assign,nonatomic) CGFloat height;
+@property (nonatomic,assign) BOOL isNewVer;
 @property (weak,  nonatomic) UserCenterHeadView *userHV;
 @property (weak,  nonatomic) CustomBackgroundView *baView;
 @property (weak,  nonatomic) ShopShareCustomView *shareView;
@@ -34,7 +35,8 @@
                   @{@"image":@"icon_fav",@"title":@"我的收藏",@"vc":@"UserMyCollection"},
                   @{@"image":@"icon_order",@"title":@"我的订单",@"vc":@"UserMyOrderListVC"},
                   @{@"image":@"icon_share_2",@"title":@"分享小茶宝",@"vc":@"UserShare"},
-                  @{@"image":@"icon_help",@"title":@"使用帮助及协议",@"vc":@"UserHelpViewController"},
+                  @{@"image":@"icon_help",@"title":@"使用帮助及协议",
+                    @"vc":@"UserHelpViewController"},
                   @{@"image":@"icon_me",@"title":@"关于我们",@"vc":@"UserAboutUsVc"},
                   @{@"image":@"icon_set",@"title":@"设置",@"vc":@"UserReSetViewC"}];
     [self setupTableView];
@@ -47,7 +49,7 @@
     params[@"title"] = @"小茶宝";
     params[@"des"] = @"下载地址";
     params[@"image"] = [UIImage imageNamed:@"logo"];
-    params[@"url"] = [@"https://itunes.apple.com/cn/app/小茶宝/id1286622636?l=zh&ls=1&mt=8"stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    params[@"url"] = [@"http://appurl.me/17720737"stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     return params.copy;
 }
 
@@ -119,6 +121,7 @@
         [self.userHV setUserInfo];
     }
     [self loadMessCountData];
+    [self loadAboutUsVersion];
 }
 
 - (void)loadMessCountData{
@@ -138,6 +141,22 @@
             }
         }
     } requestURL:url params:params];
+}
+
+- (void)loadAboutUsVersion{
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    NSString *netUrl = [NSString stringWithFormat:@"%@api/app/info",baseNet];
+    [BaseApi getGeneralData:^(BaseResponse *response, NSError *error) {
+        if ([response.code isEqualToString:@"0000"]&&[YQObjectBool boolForObject:response.result]) {
+            NSString *newVer = response.result[@"app_ios_version"];
+            NSString *ver = [[NSUserDefaults standardUserDefaults]objectForKey:@"iOSVer"];
+            self.isNewVer = ![newVer isEqualToString:ver];
+            [self.tableView reloadData];
+        }else{
+            NSString *str = response.msg?response.msg:@"查询失败";
+            [MBProgressHUD showError:str];
+        }
+    } requestURL:netUrl params:params];
 }
 
 - (void)navigationController:(UINavigationController *)navigationController
@@ -234,7 +253,11 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UserCenterListCell *cell = [UserCenterListCell cellWithTableView:tableView];
-    cell.dic = self.list[indexPath.row];
+    NSDictionary *mesDic = self.list[indexPath.row];
+    if ([mesDic[@"title"]isEqualToString:@"关于我们"]) {
+        cell.isNewVer = self.isNewVer;
+    }
+    cell.dic = mesDic;
     return cell;
 }
 

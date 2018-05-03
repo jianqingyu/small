@@ -20,18 +20,18 @@
     //当前的版本
     NSString *currentVersion = [NSBundle mainBundle].infoDictionary[key];
     if (lastVersion.length>0) {
-        if ([AccountTool account].isLog) {
-            self.rootViewController = [[MainTabViewController alloc]init];
-        }else{
-            self.rootViewController = [[LoginViewController alloc]init];
-        }
+        self.rootViewController = [[MainTabViewController alloc]init];
+//        if ([AccountTool account].isLog) {
+//            self.rootViewController = [[MainTabViewController alloc]init];
+//        }else{
+//            self.rootViewController = [[LoginViewController alloc]init];
+//        }
     }else{
         self.rootViewController = [[NewfeatureViewController alloc]init];
         //将当前版本存入
         [[NSUserDefaults standardUserDefaults]setObject:currentVersion forKey:key];
         [[NSUserDefaults standardUserDefaults]synchronize];
     }
-//    if ([currentVersion isEqualToString:lastVersion]) {
 }
 
 @end

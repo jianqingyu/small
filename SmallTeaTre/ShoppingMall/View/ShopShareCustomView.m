@@ -7,9 +7,11 @@
 //
 
 #import "ShopShareCustomView.h"
+#import "WXApi.h"
 #import <ShareSDK/ShareSDK.h>
+#import "ShowLoginViewTool.h"
 #import <ShareSDKConnector/ShareSDKConnector.h>
-@interface ShopShareCustomView()
+@interface ShopShareCustomView()<WXApiDelegate>
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *btns;
 @end
 @implementation ShopShareCustomView
@@ -46,6 +48,13 @@
 }
 
 - (void)setShareSdkAtIndex:(NSInteger)idex{
+    if (idex==0||idex==1) {
+        if (![WXApi isWXAppInstalled]) {
+            //未安装微信调起web登录
+            [MBProgressHUD showError:@"未安装微信"];
+            return;
+        }
+    }
     [SVProgressHUD show];
     //创建分享参数（必要）
     NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];

@@ -10,6 +10,7 @@
 
 @interface HomePageHeadView : UIView
 + (HomePageHeadView *)createHeadView;
+@property (weak, nonatomic) IBOutlet UIImageView *headImg;
 @property (nonatomic, copy)NSArray *infoArr;
 @property (nonatomic, copy)NSDictionary *messDic;
 @end

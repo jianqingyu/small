@@ -14,10 +14,11 @@
 #import "SaveUserInfoTool.h"
 #import "AssociatPhoneVC.h"
 #import "PackagingTool.h"
+#import "WXApi.h"
 #import "LoggingWithDataTool.h"
 #import "MainNavViewController.h"
 #import <TencentOpenAPI/TencentOAuth.h>
-@interface CustomLoginV()<TencentSessionDelegate>
+@interface CustomLoginV()<TencentSessionDelegate,WXApiDelegate>
 {
     TencentOAuth *_tencentOAuth;
 }
@@ -84,7 +85,12 @@
 }
 
 - (IBAction)weixinClick:(id)sender {
-    [self sendAuthRequest];
+    SendAuthReq *sendAuth = [[SendAuthReq alloc]init];
+    if ([WXApi isWXAppInstalled]) {
+         [self sendAuthRequest];
+    }else{ //未安装微信调起web登录
+        [WXApi sendAuthReq:sendAuth viewController:[ShowLoginViewTool getCurrentVC] delegate:self];
+    }
 }
 
 - (void)sendAuthRequest{
